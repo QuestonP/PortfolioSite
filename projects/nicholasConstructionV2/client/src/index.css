@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* full window width */
+    text-align: center;
+    background-color: rgb(rgb(221, 255, 0), rgb(107, 128, 0), rgb(255, 255, 0));
+}

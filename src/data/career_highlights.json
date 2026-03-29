@@ -1,0 +1,29 @@
+{
+  "_meta": { "schema": "career-highlights-v1" },
+  "highlights": [
+    {
+      "id": "pharma-deal-win",
+      "index": "01",
+      "label": "Enterprise Pharma Deal Win",
+      "impact": "New logo — global top-10 pharma",
+      "description": "Developed an agentic workflow proof-of-concept for one of the largest pharmaceutical companies in the world. The PoC surfaced a massive, previously unmeasured value opportunity and provided a concrete resolution path — directly winning the enterprise deal. This deal ranked as a top-3 deal in company history by size.",
+      "tags": ["Agentic AI", "PoC", "Process Mining", "Deal Win"]
+    },
+    {
+      "id": "customer-save",
+      "index": "02",
+      "label": "$800K ARR Customer Save",
+      "impact": "At-risk account retained",
+      "description": "Participated in a high-stakes 4-month sprint to save an $800K ARR customer on the verge of churn. Built automations targeting working capital pain points and developed a tax matching agent PoC that transformed the engagement from reactive to strategic.",
+      "tags": ["Automation", "Working Capital", "Sprint Delivery", "Retention"]
+    },
+    {
+      "id": "ai-expansion-deal",
+      "index": "03",
+      "label": "Multi-Million Dollar AI Deal",
+      "impact": "Multi-million dollar AI expansion",
+      "description": "The tax matching agent PoC built during the customer save sprint became a standalone growth lever — demonstrating production-ready AI value that anchored a multi-million dollar AI-centered expansion deal.",
+      "tags": ["AI Agent", "Tax Matching", "Expansion Revenue", "LLM"]
+    }
+  ]
+}

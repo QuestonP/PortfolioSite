@@ -1,0 +1,116 @@
+{
+  "_meta": { "schema": "experience-v1" },
+  "positions": [
+    {
+      "id": "celonis-2024",
+      "company": "Celonis",
+      "company_url": "https://www.celonis.com",
+      "title": "Value Engineer / Applied AI Champion",
+      "location": "Raleigh, NC",
+      "type": "full-time",
+      "start": "2024-06",
+      "end": null,
+      "current": true,
+      "tags": ["AI", "Process Mining", "LLMs", "Sales Engineering"],
+      "bullets": [
+        {
+          "text": "Led foundational analytics framework for a major retail prescription distributor using Python, SQL, and Celonis — drove targeted fulfillment improvements and enabled multimillion-dollar value capture.",
+          "impact": "$200M+ value realized",
+          "skills": ["Python", "SQL", "Celonis", "Process Mining"]
+        },
+        {
+          "text": "Developed an LLM-powered application using GPT-4o, OCR via Docling, and prompt engineering to automate analysis of Master Service Agreements and Order Forms for the legal team.",
+          "impact": "Eliminated hours of manual legal review",
+          "skills": ["GPT-4o", "LangChain", "OCR", "Prompt Engineering"]
+        },
+        {
+          "text": "Built an S-BERT string clustering model analyzing 2M+ purchase orders across two procurement branches for a leading American automotive company.",
+          "impact": "Surfaced millions in duplicate orders",
+          "skills": ["S-BERT", "ChromaDB", "Python", "NLP"]
+        },
+        {
+          "text": "Implemented a fuzzy matching algorithm to detect and recover duplicate invoice payments across enterprise AP workflows.",
+          "impact": "$200K in recovered duplicate payments",
+          "skills": ["Python", "Fuzzy Matching", "SQL"]
+        },
+        {
+          "text": "Led Celonis AI Labs and national hackathons — guided enterprise teams from 20+ companies in prototyping AI-driven process mining use cases.",
+          "impact": "National scale events driving production AI adoption",
+          "skills": ["Leadership", "AI", "Facilitation", "Public Speaking"]
+        }
+      ]
+    },
+    {
+      "id": "allpeople-2024",
+      "company": "AllPeople Marketplace",
+      "company_url": null,
+      "title": "Data Analyst Intern",
+      "location": "Remote",
+      "type": "internship",
+      "start": "2024-01",
+      "end": "2024-06",
+      "current": false,
+      "tags": ["Data Analytics", "SQL", "Python", "Supply Chain"],
+      "bullets": [
+        {
+          "text": "Applied SQL and Python to clean and preprocess consumer data, ensuring integrity for supply chain logistics analysis.",
+          "impact": "Identified $20K+ in order management inefficiencies",
+          "skills": ["SQL", "Python", "Data Cleaning"]
+        },
+        {
+          "text": "Developed a clustering model identifying products frequently purchased together, enabling targeted marketing strategies.",
+          "impact": "Measurable sales growth across 17 key SKUs",
+          "skills": ["Clustering", "ML", "Marketing Analytics"]
+        }
+      ]
+    },
+    {
+      "id": "willowtree-2023",
+      "company": "WillowTree (TELUS International)",
+      "company_url": "https://www.willowtreeapps.com",
+      "title": "Software Engineer Intern",
+      "location": "Durham, NC",
+      "type": "internship",
+      "start": "2023-05",
+      "end": "2023-08",
+      "current": false,
+      "tags": ["Backend", "AWS", "TypeScript", "CI/CD"],
+      "bullets": [
+        {
+          "text": "Built REST API endpoints using NestJS, TypeScript, and AWS (Lambda, EC2, S3) for the US's first high-speed rail company's mobile application.",
+          "impact": "Shipped to production across iOS and Android",
+          "skills": ["NestJS", "TypeScript", "AWS Lambda", "REST APIs"]
+        },
+        {
+          "text": "Automated CI/CD pipelines and unit testing using YAML scripts and GitHub Actions alongside AWS services.",
+          "impact": "Reduced deployment friction and improved release stability",
+          "skills": ["GitHub Actions", "YAML", "CI/CD", "AWS"]
+        }
+      ]
+    },
+    {
+      "id": "humanid-2022",
+      "company": "Foundation for Human Internet (humanID)",
+      "company_url": "https://humanid.org",
+      "title": "Software Engineer",
+      "location": "Remote",
+      "type": "part-time",
+      "start": "2022-12",
+      "end": "2023-07",
+      "current": false,
+      "tags": ["React", "Node.js", "Python", "Full Stack"],
+      "bullets": [
+        {
+          "text": "Revamped the developer console using JavaScript, React.js, and Node.js — improving UX for third-party developers integrating humanID.",
+          "impact": "+20% increase in web traffic",
+          "skills": ["React", "Node.js", "JavaScript"]
+        },
+        {
+          "text": "Built a Discord bot using Python, Flask, and the Discord API to automate company-wide milestone notifications.",
+          "impact": "Improved team visibility into company progress",
+          "skills": ["Python", "Flask", "Discord API"]
+        }
+      ]
+    }
+  ]
+}

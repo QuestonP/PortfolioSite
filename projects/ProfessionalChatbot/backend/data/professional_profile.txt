@@ -1,0 +1,102 @@
+Professional Overview:
+I'm a Value Engineer on the Applied AI Team at Celonis, where I combine data science, AI, and process mining to help organizations optimize their operations. I have a Bachelor's in Computer Science from UNC Chapel Hill and I'm pursuing a Master's in Computer Science from the University of Colorado Boulder, focusing on AI. My work spans developing LLM-powered apps, optimizing working capital, and deploying AI-driven solutions that deliver millions in business value.
+
+---
+
+Educational Background:
+I earned my Bachelor's in Computer Science from the University of North Carolina at Chapel Hill, specializing in Data Science and Linguistics (NLP). I'm currently pursuing a Master of Science in Computer Science at the University of Colorado Boulder, with a focus on Artificial Intelligence, expected in Winter 2026.
+
+---
+
+Current Role and Responsibilities:
+I work as a Value Engineer on Celonis's Applied AI Team. My role involves creating AI-powered solutions, building data pipelines, conducting process mining analyses, and guiding customers through proof of value projects that drive measurable business impact.
+
+---
+
+Technical Stack and Tools:
+I work with Python, SQL, TypeScript/JavaScript, Node.js, PyTorch, LangChain, HuggingFace, and REST APIs. On the infrastructure side, I use AWS (Lambda, EC2, S3, DynamoDB), GitHub Actions, and Azure OpenAI services.
+
+---
+
+Notable Projects and Achievements:
+One project I'm particularly proud of is developing an LLM-powered application using Azure OpenAI GPT-4o for automated analysis of legal documents, which reduced review time for Celonis's legal team. I also implemented a fuzzy matching algorithm that uncovered $200K in duplicate invoice payments for a client.
+
+---
+
+Problem-Solving Experience:
+During a client proof of value, I encountered fragmented procurement data across two branches. I built and deployed an S-BERT-based string clustering model to analyze 2 million purchase orders, which identified millions in duplicate orders and streamlined procurement.
+
+---
+
+Professional Motivation:
+I'm motivated by solving complex problems that deliver measurable value. I enjoy leveraging AI and data to help organizations make better decisions and operate more efficiently.
+
+---
+
+Career Vision:
+In five years, I aim to be leading AI-driven transformation initiatives, bridging technical solutions with business strategy at scale.
+
+---
+
+Core Strengths:
+I excel at blending technical expertise in AI, machine learning, and data engineering with business consulting skills. I'm also skilled at quickly understanding client needs and designing solutions that deliver tangible results.
+
+---
+
+Leadership Experience:
+I've led cross-functional proof of concept projects at Celonis, driven sales processes from start to finish, and mentored junior engineers in both professional and internship settings.
+
+---
+
+Problem-Solving Methodology:
+I start with understanding the problem context, gather and analyze relevant data, develop a hypothesis, build a solution prototype, and iterate based on results and feedback.
+
+---
+
+Industry Experience:
+I've worked across industries including pharmaceuticals, automotive, retail, manufacturing, and finance, applying AI and process mining to solve diverse operational challenges.
+
+---
+
+Technical Specializations:
+My specialties include large language models, prompt engineering, machine learning, natural language processing, process mining, and building end-to-end data pipelines.
+
+---
+
+Project Management Skills:
+I manage parallel projects by prioritizing based on business impact, maintaining clear documentation, and using tools like Notion and project trackers to stay organized.
+
+---
+
+Professional Training:
+I have hands-on expertise with GenAI, LLMs, and process mining tools, and have completed training in HuggingFace, LangChain, and Azure OpenAI API integration.
+
+---
+
+Major Professional Achievement:
+Helping a leading pharmaceutical distributor realize over $50M in value by identifying inefficiencies in prescription fulfillment and accounts receivable processes was one of my biggest professional achievements.
+
+---
+
+Work Style:
+I'm detail-oriented, data-driven, and collaborative. I balance deep technical work with clear communication to stakeholders.
+
+---
+
+Recent Learning:
+Recently, I've deepened my expertise in building AI-powered applications with LLMs and integrating them into business workflows for automation and decision support.
+
+---
+
+Mentoring Experience:
+I've mentored junior software engineers and analysts, providing technical guidance, reviewing code, and helping them navigate professional development.
+
+---
+
+Innovation Approach:
+I experiment with emerging technologies in small-scale pilots, measure their effectiveness, and scale solutions that demonstrate real business value.
+
+---
+
+Personal Interests:
+I enjoy building side projects in AI, working out—especially on the StairMaster—and exploring how technology can improve everyday processes.

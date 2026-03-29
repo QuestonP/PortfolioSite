@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.env.local
+.DS_Store
+venv
+__pycache__
+vector_db
+.next
+*.pack
+projects/INLS Final Project/research_paper_data.csv

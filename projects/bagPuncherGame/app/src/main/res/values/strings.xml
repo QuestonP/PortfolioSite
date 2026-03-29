@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">bagPuncherGame</string>
+    <string name="bag_puncher">BAG-PUNCHER</string>
+    <string name="tear_it_up">Tear it up!</string>
+    <string name="hit_me">Hit Me</string>
+    <string name="funny_messages_here">Funny Messages Here</string>
+    <string name="upgrades">Upgrades</string>
+    <string name="total_hits">Total Hits:</string>
+    <string name="button_to_punch_for_points">Button to punch for points</string>
+    <string name="store">Store</string>
+</resources>

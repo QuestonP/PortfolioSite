@@ -1,0 +1,26 @@
+{
+  "name": "knewsfeedvanilla",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuestonP/knewsfeed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuestonP/knewsfeed/issues"
+  },
+  "homepage": "https://github.com/QuestonP/knewsfeed#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.11",
+    "express": "^4.18.1",
+    "jquery": "^3.6.0",
+    "nodemon": "^2.0.16"
+  }
+}

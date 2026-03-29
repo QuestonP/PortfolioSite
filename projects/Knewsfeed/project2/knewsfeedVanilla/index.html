@@ -1,0 +1,105 @@
+
+  <!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+     crossorigin="anonymous">
+     <link rel="stylesheet" href="style.css">
+
+    <title>Knewsfeed</title>
+  </head>
+
+    <body class="container-fluid vh-100">
+
+      <nav class="navbar text-black mx-2" >
+        <div class="vw-100" id="navBox"> 
+          <h2 class="display-6 align-self-center" id="pageTitle"><a href="/index.html">KnewsFeed</a></h2>
+          <div class="d-flex ms-1 p-2 mb-1" id="searchBox" style="width: 50%; height: 7%;">
+            <img src="./images/search.png" class="border-end me-1 px-2" style="width:6%;" alt="search">
+            <input type="text" placeholder="What are you looking for..?" class="mx-2 bg-transparent" style="width: 100%; height: 15%;" id="newsQuery">
+          </div>
+
+        </div>
+
+        <div id="Header" class=" end-0 top-0 mt-2" style="width: 30%; height: 10vh;"></div>
+      </nav>
+
+      <marquee behavior="scroll" direction="left" class="mb-1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A delectus dignissimos vel, exercitationem quisquam non? Architecto magni 
+        blanditiis amet ad reprehenderit. Inventore praesentium alias quaerat. Vel saepe sapiente laudantium repellat.</marquee>
+
+      <section class="container d-flex vh-100 mb-1 container" id="newsSection">
+        
+        <div class="news-sections vh-90 btn-group d-inline-block align-top mb-1 bg-light col-md-2" id="options" style="height: fit-content;">
+          <ul class="list-group list-unstyled position-stick">
+            
+          <li><input type="radio" name="choose-news" id="pageName" class="btn-check" autocomplete="off" style="height: 14.25%;">
+            <label for="pageName" class="btn btn-outline-secondary btn-sm list-group-item text-black border-0 fs-italic fs-bold py-4">Home</label></li>
+
+          <li><input type="radio" name="choose-news" id="tech-radio" class="btn-check" autocomplete="off" style="height: 14.25%;">
+            <label for="tech-radio" class="btn btn-outline-success btn-sm list-group-item text-black fs-italic fs-bold py-5 border-0">Tech</label></li>
+
+            <li>
+              <input type="radio" name="choose-news" id="sports-radio" class="btn-check" autocomplete="off" style="height: 14.25%;">
+              <label for="sports-radio" class="btn btn-outline-primary btn-sm list-group-item text-black fs-italic py-5 border-0">Sports</label></li>
+
+              <li>
+                <input type="radio" name="choose-news" id="economy-radio" class="btn-check" autocomplete="off" style="height: 14.25%;">
+                <label for="economy-radio" class="btn btn-outline-danger btn-sm list-group-item text-black fs-italic py-5 border-0">Business</label></li>
+  
+                <li>
+                  <input type="radio" name="choose-news" id="health-radio" class="btn-check" autocomplete="off" style="height: 14.25%;">
+                  <label for="health-radio" class="btn btn-outline-dark btn-sm list-group-item text-black fs-italic py-5 border-0">Health</label></li>
+
+                  <li>
+                    <input type="radio" name="choose-news" id="culture-radio" class="btn-check" autocomplete="off" style="height: 14.25%;">
+                    <label for="culture-radio" class="btn btn-outline-warning list-group-item btn-sm text-black fs-italic py-5 border-0">Culture</label></li>
+
+          </ul>
+        </div>
+        
+
+       <div class="col-md-7 mx-1 vh-100 row p-2" id="newsType"></div>
+
+
+      <div class="col-md-3 justify-content-center vh-100 align-items-center text-center" id="stockSection">
+        <h5 class="header-5 align-items-center my-2"> Most Active Stocks</h5>
+        <!-- <div id="buttonContainer" class="m-2 btn-group align-top">
+          <ul class="list-group list-group-horizontal list-unstyled">
+            <li >
+              <input type="radio" name="choose-stock" id="mostActive-radio" class="btn-check" autocomplete="off">
+                    <label for="mostActive-radio" class="btn btn-outline-danger btn-sm list-group-item btn-sm text-black fs-italic py-4 border-0">Most Active</label></li>
+            </li>
+            <li>
+              <input type="radio" name="choose-stock" id="trending-radio" class="btn-check" autocomplete="off">
+                    <label for="trending-radio" class="btn btn-outline-success btn-sm list-group-item btn-sm text-black fs-italic py-4 border-0">Trending</label></li>
+            </li>
+          </ul>
+        </div> -->
+
+    
+      </div>
+  
+      </section>
+
+    
+  
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" 
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" 
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" 
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" 
+    crossorigin="anonymous"></script>
+    <script src="app.js" type="text/javascript"></script>
+    
+  </body>
+</html>

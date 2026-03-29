@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg:          #0a0a0f;
+  --color-surface:     #111118;
+  --color-surface-2:   #1a1a24;
+  --color-border:      rgba(255, 255, 255, 0.07);
+  --color-border-accent: rgba(102, 126, 234, 0.35);
+  --color-accent:      #667eea;
+  --color-accent-2:    #764ba2;
+  --color-accent-glow: rgba(102, 126, 234, 0.15);
+  --color-text:        #f3f4f6;
+  --color-muted:       #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-subtle, #374151); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* Selection */
+::selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: var(--color-text);
+}
+
+/* Grid dot background for hero */
+.dot-grid {
+  background-image: radial-gradient(rgba(102, 126, 234, 0.15) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #a78bfa 50%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glowing border on hover */
+.glow-border {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.glow-border:hover {
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.1);
+}
+
+/* Fade in animation for sections */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Horizontal scrolling tags (mobile) */
+.tags-scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.tags-scroll::-webkit-scrollbar { display: none; }

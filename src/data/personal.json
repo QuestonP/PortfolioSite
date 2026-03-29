@@ -1,0 +1,26 @@
+{
+  "_meta": { "schema": "personal-v1" },
+  "origin": {
+    "hometown": "Bridgeport, CT",
+    "current_city": "Raleigh, NC",
+    "family": "Second of eight siblings",
+    "siblings": 8,
+    "pets": "Quest has one pet: a cat named Cell.",
+    "cat": "Cell",
+    "coding_since": "9th grade",
+    "high_school": "Information Technology & Software Engineering High School at the Fairchild Wheeler Inter-district Magnet Campus, Bridgeport, CT",
+    "high_school_short": "Fairchild Wheeler ITC, Bridgeport, CT",
+    "story": "Quest grew up in Bridgeport, CT — the second of eight siblings. Growing up in a big family in Bridgeport shaped how he thinks: fast, collaborative, and always looking for leverage. He attended the Information Technology & Software Engineering High School at the Fairchild Wheeler Inter-district Magnet Campus, one of the most advanced STEM magnet schools in Connecticut, where he wrote his first lines of code in 9th grade. After high school he moved to North Carolina to study Computer Science at UNC Chapel Hill, fell in love with the Research Triangle, and never left. Today he lives in Raleigh, NC — working full-time as a Value Engineer at Celonis and spending evenings on his online Master's in Computer Science at CU Boulder. His cat Cell supervises most of the studying."
+  },
+  "interests": [
+    "Basketball",
+    "Football",
+    "Boxing",
+    "Running",
+    "Poetry",
+    "Video Games",
+    "Reading",
+    "Nights out with friends"
+  ],
+  "current_status": "Working full-time as a Value Engineer and Applied AI Champion at Celonis in Raleigh, NC while pursuing an online MS in Computer Science with an AI focus at the University of Colorado Boulder."
+}

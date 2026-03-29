@@ -1,0 +1,38 @@
+{
+  "_meta": { "schema": "profile-v1", "last_updated": "2026-03-28" },
+  "name": "Quest Parker",
+  "tagline": "AI Consultant · Data Scientist · Deployment Strategist · Forward Deployed Engineer",
+  "location": "Raleigh, NC",
+  "email": "questonp123@gmail.com",
+  "phone": "(919) 943-6486",
+  "github": "https://github.com/QuestonP",
+  "linkedin": "https://www.linkedin.com/in/questonparker/",
+  "bio_short": "I build AI systems that generate measurable business impact — from LLM-powered document analysis to ML clustering models that surface millions in hidden costs.",
+  "bio_long": "Quest Parker sits at the intersection of AI engineering and enterprise consulting. With a background spanning software engineering, machine learning, and forward-deployed client engagements, I specialize in taking AI from proof-of-concept to production. Currently at Celonis as a Value Engineer and Applied AI Champion, I lead foundational analytics initiatives and AI hackathons at national scale. My work spans LLM applications, NLP clustering, process mining, and backend systems — always anchored to real business outcomes. Pursuing an MS in Computer Science (AI focus) at CU Boulder while applying that knowledge daily in the field.",
+  "roles": [
+    {
+      "id": "ai-consultant",
+      "label": "AI Consultant",
+      "color": "#38bdf8",
+      "description": "Designing and deploying LLM-powered solutions for enterprise clients — from prompt engineering to full RAG pipelines"
+    },
+    {
+      "id": "data-scientist",
+      "label": "Data Scientist",
+      "color": "#a78bfa",
+      "description": "Building ML models and data pipelines across healthcare, supply chain, legal, and automotive sectors"
+    },
+    {
+      "id": "deployment-strategist",
+      "label": "Deployment Strategist",
+      "color": "#34d399",
+      "description": "Owning end-to-end proof-of-value cycles — from discovery workshops to production launches that stick"
+    },
+    {
+      "id": "fde",
+      "label": "Forward Deployed Engineer",
+      "color": "#fb923c",
+      "description": "Embedding with clients to build custom technical solutions against live enterprise data, on-site and at pace"
+    }
+  ]
+}

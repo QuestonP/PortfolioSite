@@ -1,0 +1,25 @@
+{
+  "_meta": { "schema": "education-v1" },
+  "degrees": [
+    {
+      "id": "ms-cu",
+      "institution": "University of Colorado Boulder",
+      "degree": "Master of Science",
+      "field": "Computer Science",
+      "focus": "Artificial Intelligence",
+      "status": "in-progress",
+      "expected": "2026-12",
+      "location": "Boulder, CO"
+    },
+    {
+      "id": "ba-unc",
+      "institution": "University of North Carolina at Chapel Hill",
+      "degree": "Bachelor of Arts",
+      "field": "Computer Science",
+      "focus": "Natural Language Processing",
+      "status": "completed",
+      "graduated": "2024-05",
+      "location": "Chapel Hill, NC"
+    }
+  ]
+}
