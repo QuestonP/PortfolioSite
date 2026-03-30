@@ -1,26 +1,32 @@
 {
   "_meta": { "schema": "profile-v1", "last_updated": "2026-03-28" },
   "name": "Quest Parker",
-  "tagline": "AI Consultant · Data Scientist · Deployment Strategist · Forward Deployed Engineer",
+  "tagline": "Data Scientist · Solutions Engineer · AI Consultant · Deployment Strategist · Forward Deployed Engineer",
   "location": "Raleigh, NC",
   "email": "questonp123@gmail.com",
   "phone": "(919) 943-6486",
   "github": "https://github.com/QuestonP",
   "linkedin": "https://www.linkedin.com/in/questonparker/",
-  "bio_short": "I build AI systems that generate measurable business impact — from LLM-powered document analysis to ML clustering models that surface millions in hidden costs.",
-  "bio_long": "Quest Parker sits at the intersection of AI engineering and enterprise consulting. With a background spanning software engineering, machine learning, and forward-deployed client engagements, I specialize in taking AI from proof-of-concept to production. Currently at Celonis as a Value Engineer and Applied AI Champion, I lead foundational analytics initiatives and AI hackathons at national scale. My work spans LLM applications, NLP clustering, process mining, and backend systems — always anchored to real business outcomes. Pursuing an MS in Computer Science (AI focus) at CU Boulder while applying that knowledge daily in the field.",
+  "bio_short": "I build data-driven solutions that generate measurable business impact — from ML clustering models that surface millions in hidden costs to LLM-powered document analysis and predictive analytics pipelines.",
+  "bio_long": "Quest Parker sits at the intersection of data science, machine learning, and enterprise consulting. With a background spanning ML engineering, AI development, and forward-deployed client engagements, I specialize in taking data solutions from proof-of-concept to production. Currently at Celonis as a Value Engineer and Applied AI Champion, I lead foundational analytics initiatives and data science hackathons at national scale. My work spans ML modeling, NLP clustering, LLM applications, process mining, and data pipelines — always anchored to real business outcomes. Pursuing an MS in Computer Science (AI focus) at CU Boulder while applying that knowledge daily in the field.",
   "roles": [
-    {
-      "id": "ai-consultant",
-      "label": "AI Consultant",
-      "color": "#38bdf8",
-      "description": "Designing and deploying LLM-powered solutions for enterprise clients — from prompt engineering to full RAG pipelines"
-    },
     {
       "id": "data-scientist",
       "label": "Data Scientist",
       "color": "#a78bfa",
-      "description": "Building ML models and data pipelines across healthcare, supply chain, legal, and automotive sectors"
+      "description": "Building ML models, statistical analyses, and data pipelines across healthcare, supply chain, legal, and automotive sectors"
+    },
+    {
+      "id": "solutions-engineer",
+      "label": "Solutions Engineer",
+      "color": "#38bdf8",
+      "description": "Architecting and delivering end-to-end technical solutions tailored to client needs — from scoping and design to production deployment"
+    },
+    {
+      "id": "ai-consultant",
+      "label": "AI Consultant",
+      "color": "#f472b6",
+      "description": "Translating AI and ML capabilities into enterprise solutions — scoping use cases, building PoCs, and driving adoption with clients"
     },
     {
       "id": "deployment-strategist",

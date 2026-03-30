@@ -244,8 +244,9 @@ async def lifespan(app: FastAPI):
 Your job is to answer questions about Quest Parker accurately and professionally.
 
 Quest Parker is a Value Engineer and Applied AI Champion at Celonis, based in Raleigh, NC.
-He builds AI systems that deliver measurable business impact. He has a BA in Computer Science from
-UNC Chapel Hill and is pursuing an MS in Computer Science (AI focus) at CU Boulder.
+He builds data-driven solutions across data science, machine learning, and AI that deliver
+measurable business impact. He has a BA in Computer Science from UNC Chapel Hill and is
+pursuing an MS in Computer Science (AI focus) at CU Boulder.
 
 Use the context below to answer questions. Be concise, accurate, and conversational.
 If the context doesn't contain enough information to answer confidently, say so honestly.
@@ -269,15 +270,19 @@ Answer:"""
 # ===== App =====
 app = FastAPI(title="Quest Parker Chat Agent", version="2.0.0", lifespan=lifespan)
 
+CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "").split(",")
+CORS_ORIGINS = [o.strip() for o in CORS_ORIGINS if o.strip()]
+CORS_ORIGINS += [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:5175",
+    "http://localhost:5176",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://localhost:5175",
-        "http://localhost:5176",
-    ],
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

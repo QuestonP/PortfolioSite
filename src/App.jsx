@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Home from './pages/Home'
@@ -10,7 +10,7 @@ import ChatWidget from './components/chat/ChatWidget'
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-bg text-text">
         <Navbar />
         <main className="flex-1">
@@ -25,6 +25,6 @@ export default function App() {
         <Footer />
         <ChatWidget />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   )
 }

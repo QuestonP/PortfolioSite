@@ -49,7 +49,7 @@ export default function About() {
           <RevealWrapper>
             <p className="font-mono text-xs text-accent uppercase tracking-widest mb-3">About Me</p>
             <h1 className="font-display font-bold text-4xl md:text-5xl text-text mb-6">
-              Building AI systems that<br className="hidden md:block" />
+              Building data solutions that<br className="hidden md:block" />
               <span className="gradient-text"> actually ship.</span>
             </h1>
             <p className="font-body text-muted text-base md:text-lg max-w-2xl leading-relaxed">
