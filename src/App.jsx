@@ -6,6 +6,7 @@ import About from './pages/About'
 import Projects from './pages/Projects'
 import Resume from './pages/Resume'
 import Contact from './pages/Contact'
+import Impact from './pages/Impact'
 import ChatWidget from './components/chat/ChatWidget'
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/about"    element={<About />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/resume"   element={<Resume />} />
+            <Route path="/impact"   element={<Impact />} />
             <Route path="/contact"  element={<Contact />} />
           </Routes>
         </main>

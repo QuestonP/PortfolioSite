@@ -4,32 +4,32 @@
     {
       "id": "languages",
       "label": "Languages",
-      "skills": ["Python", "SQL", "TypeScript", "JavaScript", "YAML"]
+      "skills": ["Python", "TypeScript", "SQL"]
     },
     {
       "id": "ai-ml",
       "label": "AI / ML",
-      "skills": ["LLMs", "LangChain", "RAG", "Prompt Engineering", "S-BERT", "HuggingFace", "PyTorch", "Scikit-Learn", "NLP", "ChromaDB", "Ollama", "GPT-4o", "Docling"]
+      "skills": ["LLMs", "Agentic AI", "RAG Architectures", "Semantic Clustering", "Prompt Engineering", "S-BERT", "PyTorch", "SciKit Learn", "NLP", "ChromaDB", "Amazon SageMaker", "GPT-4o", "Docling"]
     },
     {
       "id": "data",
       "label": "Data & Analytics",
-      "skills": ["Process Mining", "Celonis", "Data Modeling", "Data Pipelines", "Statistical Analysis", "Supply Chain Analytics", "Market Basket Analysis", "Tableau", "Pandas", "NumPy"]
+      "skills": ["Process Mining", "Process Intelligence", "Celonis", "Data Visualization", "A/B Testing", "Predictive Analytics", "Supply Chain Analytics", "Data Pipelines", "Pandas", "NumPy"]
     },
     {
       "id": "backend",
       "label": "Backend & Cloud",
-      "skills": ["FastAPI", "NestJS", "Node.js", "Flask", "REST APIs", "AWS Lambda", "AWS EC2", "AWS S3", "AWS DynamoDB", "GitHub Actions", "CI/CD", "Docker"]
+      "skills": ["REST APIs", "Amazon Web Services", "Docker", "Make Automations", "NestJS", "Node.js", "Flask", "FastAPI", "GitHub Actions", "CI/CD"]
     },
     {
       "id": "frontend",
       "label": "Frontend",
-      "skills": ["React.js", "Vite", "TailwindCSS", "Framer Motion"]
+      "skills": ["React.js", "Vite", "TailwindCSS"]
     },
     {
-      "id": "business",
+      "id": "consulting",
       "label": "Consulting & Delivery",
-      "skills": ["Stakeholder Management", "Proof of Value", "Discovery Workshops", "Solution Design", "Demos & Presentations", "Project Management", "Technical Writing"]
+      "skills": ["Technical Discovery", "Solution Architecture", "PoC Delivery", "Executive Presentations", "Stakeholder Management", "Demo Mastery", "Customer Enablement", "Champion Building", "Relationship Building"]
     }
   ]
 }

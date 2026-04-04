@@ -108,7 +108,7 @@ export default function About() {
                       {highlight.index}
                     </span>
                     <span
-                      className="font-mono text-xs px-2 py-0.5 whitespace-nowrap"
+                      className="font-mono text-xs px-2 py-0.5"
                       style={{
                         color: highlight.color,
                         backgroundColor: `${highlight.color}10`,
@@ -228,7 +228,7 @@ export default function About() {
                     </div>
 
                     <div className="border border-white/7 bg-surface p-5 glow-border">
-                      <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+                      <div className="flex flex-col sm:flex-row sm:flex-wrap items-start justify-between gap-1 sm:gap-2 mb-3">
                         <div>
                           <h3 className="font-display font-bold text-text text-base">{pos.title}</h3>
                           <div className="flex items-center gap-2 mt-0.5">
@@ -260,7 +260,7 @@ export default function About() {
                             <span className="font-body text-sm text-muted leading-relaxed">
                               {b.text}
                               {b.impact && (
-                                <span className="ml-2 font-mono text-xs text-accent bg-accent/8 px-1.5 py-0.5">
+                                <span className="inline-block mt-1 sm:mt-0 sm:ml-2 font-mono text-xs text-accent bg-accent/8 px-1.5 py-0.5">
                                   {b.impact}
                                 </span>
                               )}
@@ -305,7 +305,7 @@ export default function About() {
                   I attended the <span className="text-text font-medium">Information Technology & Software Engineering High School at the Fairchild Wheeler Inter-district Magnet Campus</span> — one of the most advanced STEM magnet schools in Connecticut. That's where I wrote my first lines of code, in 9th grade. By the time I graduated I already knew this was what I wanted to do.
                 </p>
                 <p className="font-body text-sm text-muted leading-relaxed">
-                  After high school I moved to <span className="text-text font-medium">North Carolina</span> to study Computer Science at UNC Chapel Hill. I fell in love with the Research Triangle and never left. Today I live in <span className="text-text font-medium">Raleigh, NC</span> — working full-time as a Value Engineer at Celonis and spending my evenings grinding through my online Master's in Computer Science at CU Boulder. My cat <span className="text-text font-medium">Cell</span> supervises most of the studying.
+                  After high school I moved to <span className="text-text font-medium">North Carolina</span> to study Computer Science at UNC Chapel Hill, specializing in Natural Language Processing. I fell in love with the Research Triangle and never left. Today I live in <span className="text-text font-medium">Raleigh, NC</span> — working full-time as an AI Solutions Engineer at Celonis, building agentic AI solutions and delivering enterprise-grade data science that drives real business outcomes. My cat <span className="text-text font-medium">Cell</span> supervises most of the late-night coding.
                 </p>
               </div>
             </RevealWrapper>
@@ -363,10 +363,10 @@ export default function About() {
           </RevealWrapper>
         </div>
 
-        {/* Education */}
+        {/* Education & Certifications */}
         <div className="mt-16">
           <RevealWrapper>
-            <SectionLabel>Education</SectionLabel>
+            <SectionLabel>Education & Certifications</SectionLabel>
           </RevealWrapper>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {education.degrees.map(deg => (
@@ -394,6 +394,29 @@ export default function About() {
                     </span>
                   </div>
                   <p className="font-body text-xs text-muted">{deg.location}</p>
+                </div>
+              </RevealWrapper>
+            ))}
+            {education.certifications?.map(cert => (
+              <RevealWrapper key={cert.id}>
+                <div className="border border-white/8 bg-surface p-5 glow-border">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div>
+                      <h3 className="font-display font-bold text-text text-sm">{cert.name}</h3>
+                      <p className="font-body text-sm text-accent mt-0.5">{cert.issuer}</p>
+                    </div>
+                    <span
+                      className="font-mono text-xs px-2 py-0.5 whitespace-nowrap"
+                      style={{
+                        color: '#667eea',
+                        backgroundColor: 'rgba(102,126,234,0.1)',
+                        border: '1px solid rgba(102,126,234,0.2)',
+                      }}
+                    >
+                      {cert.date?.split('-')[0]}
+                    </span>
+                  </div>
+                  <p className="font-mono text-xs text-muted">Professional Certification</p>
                 </div>
               </RevealWrapper>
             ))}

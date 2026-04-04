@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Download, ChevronDown } from 'lucide-react'
 import profile from '../data/profile.json'
+import ResumeDownloadModal from '../components/ResumeDownloadModal'
 
 const ROLES = profile.roles.map(r => r.label)
 const ROLE_COLORS = profile.roles.map(r => r.color)
@@ -21,6 +22,7 @@ function AnimatedRole({ role, color }) {
 export default function Home() {
   const [roleIdx, setRoleIdx] = useState(0)
   const [visible, setVisible] = useState(true)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,12 +52,6 @@ export default function Home() {
       />
 
       <div className="relative z-10 text-center max-w-5xl mx-auto">
-        {/* Status badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 border border-white/10 bg-surface text-xs font-mono text-muted">
-          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-          Available for new opportunities
-        </div>
-
         {/* Name */}
         <h1 className="font-display font-extrabold text-text leading-none mb-6"
             style={{ fontSize: 'clamp(2.8rem, 8vw, 5.5rem)' }}>
@@ -89,14 +85,13 @@ export default function Home() {
             View Projects
             <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
-          <a
-            href="/resume.pdf"
-            download
+          <button
+            onClick={() => setShowModal(true)}
             className="flex items-center gap-2 px-6 py-3 border border-white/15 text-text font-body font-medium text-sm tracking-wide transition-all duration-200 hover:border-accent/50 hover:text-accent"
           >
             <Download size={16} />
             Download Resume
-          </a>
+          </button>
         </div>
 
         {/* Role pills */}
@@ -129,6 +124,8 @@ export default function Home() {
       >
         <ChevronDown size={20} />
       </a>
+
+      <ResumeDownloadModal open={showModal} onClose={() => setShowModal(false)} />
     </section>
   )
 }

@@ -1,14 +1,14 @@
 {
-  "_meta": { "schema": "profile-v1", "last_updated": "2026-03-28" },
+  "_meta": { "schema": "profile-v1", "last_updated": "2026-04-04" },
   "name": "Quest Parker",
-  "tagline": "Data Scientist · Solutions Engineer · AI Consultant · Deployment Strategist · Forward Deployed Engineer",
+  "tagline": "AI/ML/Data Science Specialist · Solutions Engineer · Forward Deployed Engineer",
   "location": "Raleigh, NC",
   "email": "questonp123@gmail.com",
   "phone": "(919) 943-6486",
   "github": "https://github.com/QuestonP",
   "linkedin": "https://www.linkedin.com/in/questonparker/",
-  "bio_short": "I build data-driven solutions that generate measurable business impact — from ML clustering models that surface millions in hidden costs to LLM-powered document analysis and predictive analytics pipelines.",
-  "bio_long": "Quest Parker sits at the intersection of data science, machine learning, and enterprise consulting. With a background spanning ML engineering, AI development, and forward-deployed client engagements, I specialize in taking data solutions from proof-of-concept to production. Currently at Celonis as a Value Engineer and Applied AI Champion, I lead foundational analytics initiatives and data science hackathons at national scale. My work spans ML modeling, NLP clustering, LLM applications, process mining, and data pipelines — always anchored to real business outcomes. Pursuing an MS in Computer Science (AI focus) at CU Boulder while applying that knowledge daily in the field.",
+  "bio_short": "I build data-driven solutions that generate measurable business impact — from ML clustering models that surface millions in hidden costs to LLM-powered document analysis and agentic AI systems that drive enterprise-scale outcomes.",
+  "bio_long": "Quest Parker sits at the intersection of data science, machine learning, and enterprise consulting. With a background spanning ML engineering, AI development, and forward-deployed client engagements, I specialize in taking data solutions from proof-of-concept to production. Currently at Celonis as an AI Solutions Engineer and Applied AI Champion, I architect agentic AI solutions, lead foundational analytics initiatives, and deliver production-grade LLM systems that drive multi-million dollar business outcomes. My work spans ML modeling, NLP clustering, LLM applications, process mining, and data pipelines — always anchored to real business results.",
   "roles": [
     {
       "id": "data-scientist",

@@ -5,38 +5,53 @@
       "id": "celonis-2024",
       "company": "Celonis",
       "company_url": "https://www.celonis.com",
-      "title": "Value Engineer / Applied AI Champion",
+      "title": "AI Solutions Engineer (Value Engineer – Applied AI Champion)",
       "location": "Raleigh, NC",
       "type": "full-time",
       "start": "2024-06",
       "end": null,
       "current": true,
-      "tags": ["AI", "Process Mining", "LLMs", "Sales Engineering"],
+      "tags": ["AI", "Process Mining", "LLMs", "Sales Engineering", "Agentic AI"],
       "bullets": [
         {
-          "text": "Led foundational analytics framework for a major retail prescription distributor using Python, SQL, and Celonis — drove targeted fulfillment improvements and enabled multimillion-dollar value capture.",
-          "impact": "$200M+ value realized",
-          "skills": ["Python", "SQL", "Celonis", "Process Mining"]
+          "text": "Architected an agentic AI solution for dispute classification, automated resolution, and master data correction — spanning Celonis Process Orchestration, event-driven automations (Make), and an LLM-based annotation agent — validated through a 3-month live PoC that directly enabled a $4M contract expansion.",
+          "impact": "Top-3 deal in company history",
+          "skills": ["Agentic AI", "Celonis", "Make", "LLMs"]
         },
         {
-          "text": "Developed an LLM-powered application using GPT-4o, OCR via Docling, and prompt engineering to automate analysis of Master Service Agreements and Order Forms for the legal team.",
-          "impact": "Eliminated hours of manual legal review",
-          "skills": ["GPT-4o", "LangChain", "OCR", "Prompt Engineering"]
+          "text": "Led a $3.5M annual renewal for a global retail pharmaceutical client by architecting and scaling enterprise-grade process intelligence solutions on the Celonis platform, driving over $100M in realized value and securing a 2-year enterprise agreement through demonstrated ROI and stakeholder alignment.",
+          "impact": "$100M+ value realized",
+          "skills": ["Process Intelligence", "Stakeholder Management", "Celonis"]
         },
         {
-          "text": "Built an S-BERT string clustering model analyzing 2M+ purchase orders across two procurement branches for a leading American automotive company.",
-          "impact": "Surfaced millions in duplicate orders",
+          "text": "Recovered an $800K ARR churn-risk account by driving a 24-week value sprint that applied Celonis process intelligence, Make automations, and advanced analytics to surface $60M in free cash flow opportunity, $5M in P&L impact, and a clear path to enterprise-scale deployment.",
+          "impact": "$60M FCF + $5M P&L impact",
+          "skills": ["Process Mining", "Make Automations", "Analytics"]
+        },
+        {
+          "text": "Secured a $140K license expansion for one of the world's largest tobacco manufacturers by building an AI agent that automatically reviewed and released allocation blocks, unlocking up to $1B in blocked revenue; delivered the PoC onsite to 10+ senior stakeholders.",
+          "impact": "Up to $1B blocked revenue unlocked",
+          "skills": ["AI Agent", "PoC Delivery", "Executive Presentations"]
+        },
+        {
+          "text": "Led technical workshops and executive demos for academic and enterprise audiences, showcasing applied AI use cases and platform capabilities to drive product adoption and technical credibility.",
+          "impact": "National-scale AI adoption events",
+          "skills": ["Public Speaking", "Demos", "AI", "Facilitation"]
+        },
+        {
+          "text": "Executed a PoC LLM application that automatically mapped purchase order descriptions to the correct tax material groups, reducing overpaid taxes and missed-tax penalties; the solution directly supported a $1.5M AI-led commercial deal and was moved to production.",
+          "impact": "$1.5M AI-led deal",
+          "skills": ["LLMs", "Tax Matching", "Production Deployment"]
+        },
+        {
+          "text": "Designed and deployed a production-grade LLM system combining GPT-4o, OCR (Docling), and advanced prompt engineering to automate Master Service Agreement analysis, reducing manual review time by 80% across 1,000+ documents while improving extraction accuracy in real-world legal workflows.",
+          "impact": "80% reduction in manual review",
+          "skills": ["GPT-4o", "OCR", "Docling", "Prompt Engineering"]
+        },
+        {
+          "text": "Designed and implemented a semantic clustering pipeline using S-BERT and ChromaDB to process 2M+ purchase orders for a Fortune 500 automotive client, identifying duplicate orders and uncovering millions in cost savings while partnering closely with operations teams to drive adoption.",
+          "impact": "2M+ POs analyzed, millions in savings",
           "skills": ["S-BERT", "ChromaDB", "Python", "NLP"]
-        },
-        {
-          "text": "Implemented a fuzzy matching algorithm to detect and recover duplicate invoice payments across enterprise AP workflows.",
-          "impact": "$200K in recovered duplicate payments",
-          "skills": ["Python", "Fuzzy Matching", "SQL"]
-        },
-        {
-          "text": "Led Celonis AI Labs and national hackathons — guided enterprise teams from 20+ companies in prototyping AI-driven process mining use cases.",
-          "impact": "National scale events driving production AI adoption",
-          "skills": ["Leadership", "AI", "Facilitation", "Public Speaking"]
         }
       ]
     },
@@ -44,31 +59,36 @@
       "id": "allpeople-2024",
       "company": "AllPeople Marketplace",
       "company_url": null,
-      "title": "Data Analyst Intern",
+      "title": "Data Analyst",
       "location": "Remote",
       "type": "internship",
       "start": "2024-01",
       "end": "2024-06",
       "current": false,
-      "tags": ["Data Analytics", "SQL", "Python", "Supply Chain"],
+      "tags": ["Data Analytics", "SQL", "Python", "Supply Chain", "ML"],
       "bullets": [
         {
-          "text": "Applied SQL and Python to clean and preprocess consumer data, ensuring integrity for supply chain logistics analysis.",
-          "impact": "Identified $20K+ in order management inefficiencies",
-          "skills": ["SQL", "Python", "Data Cleaning"]
+          "text": "Developed clustering ML model using Python and SciKit Learn to identify product affinity patterns, enabling targeted marketing campaigns that drove measurable sales growth across 17 key SKUs.",
+          "impact": "Measurable sales growth across 17 SKUs",
+          "skills": ["Python", "SciKit Learn", "Clustering", "ML"]
         },
         {
-          "text": "Developed a clustering model identifying products frequently purchased together, enabling targeted marketing strategies.",
-          "impact": "Measurable sales growth across 17 key SKUs",
-          "skills": ["Clustering", "ML", "Marketing Analytics"]
+          "text": "Applied SQL and Python for data preprocessing and ETL workflows, identifying $20K+ in supply chain inefficiencies through data-driven analysis.",
+          "impact": "$20K+ inefficiencies identified",
+          "skills": ["SQL", "Python", "ETL", "Data Analysis"]
+        },
+        {
+          "text": "Drove business growth by leading community outreach initiatives and establishing strategic relationships with over 20 community organizations.",
+          "impact": "20+ community partnerships",
+          "skills": ["Community Outreach", "Relationship Building"]
         }
       ]
     },
     {
       "id": "willowtree-2023",
-      "company": "WillowTree (TELUS International)",
+      "company": "TELUS Digital (formerly WillowTree Inc)",
       "company_url": "https://www.willowtreeapps.com",
-      "title": "Software Engineer Intern",
+      "title": "Software Engineer – Backend Engineer",
       "location": "Durham, NC",
       "type": "internship",
       "start": "2023-05",
@@ -77,38 +97,48 @@
       "tags": ["Backend", "AWS", "TypeScript", "CI/CD"],
       "bullets": [
         {
-          "text": "Built REST API endpoints using NestJS, TypeScript, and AWS (Lambda, EC2, S3) for the US's first high-speed rail company's mobile application.",
-          "impact": "Shipped to production across iOS and Android",
+          "text": "Engineered REST API endpoints using NestJS, TypeScript, and AWS services (Lambda, EC2, S3, DynamoDB) for high-speed rail company's mobile application serving 50K+ users.",
+          "impact": "50K+ users served",
           "skills": ["NestJS", "TypeScript", "AWS Lambda", "REST APIs"]
         },
         {
-          "text": "Automated CI/CD pipelines and unit testing using YAML scripts and GitHub Actions alongside AWS services.",
-          "impact": "Reduced deployment friction and improved release stability",
+          "text": "Automated CI/CD pipelines using GitHub Actions and YAML scripts, reducing deployment time by 60% and enabling rapid iteration for production releases across iOS and Android platforms.",
+          "impact": "60% deployment time reduction",
           "skills": ["GitHub Actions", "YAML", "CI/CD", "AWS"]
+        },
+        {
+          "text": "Contributed to successful production launch by implementing backend integration, monitoring performance metrics post-release, and resolving critical bugs to ensure maximum uptime.",
+          "impact": "Shipped to production across iOS & Android",
+          "skills": ["Backend", "Monitoring", "Production Launch"]
         }
       ]
     },
     {
-      "id": "humanid-2022",
+      "id": "humanid-2023",
       "company": "Foundation for Human Internet (humanID)",
       "company_url": "https://humanid.org",
-      "title": "Software Engineer",
+      "title": "Software Engineer – Full Stack Engineer",
       "location": "Remote",
       "type": "part-time",
-      "start": "2022-12",
+      "start": "2023-12",
       "end": "2023-07",
       "current": false,
       "tags": ["React", "Node.js", "Python", "Full Stack"],
       "bullets": [
         {
-          "text": "Revamped the developer console using JavaScript, React.js, and Node.js — improving UX for third-party developers integrating humanID.",
-          "impact": "+20% increase in web traffic",
+          "text": "Redesigned developer console using React.js, Node.js, and JavaScript, improving UX/UI and driving 20% increase in web traffic and developer engagement metrics.",
+          "impact": "+20% web traffic",
           "skills": ["React", "Node.js", "JavaScript"]
         },
         {
-          "text": "Built a Discord bot using Python, Flask, and the Discord API to automate company-wide milestone notifications.",
-          "impact": "Improved team visibility into company progress",
+          "text": "Built automated notification system using Python, Flask, and Discord API, increasing team visibility into company milestones by 300% and improving cross-functional communication.",
+          "impact": "300% increase in team visibility",
           "skills": ["Python", "Flask", "Discord API"]
+        },
+        {
+          "text": "Mentored three junior engineers through code reviews and technical guidance, accelerating onboarding time by 50% and establishing best practices for the engineering team.",
+          "impact": "50% faster onboarding",
+          "skills": ["Mentorship", "Code Review", "Team Leadership"]
         }
       ]
     }

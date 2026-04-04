@@ -160,16 +160,16 @@ export default function Projects() {
           </p>
 
           {/* Quick stats */}
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-4 sm:gap-6">
             <div>
               <span className="font-mono text-2xl font-bold text-accent">{totalProjects}</span>
               <span className="font-body text-xs text-muted ml-2">total projects</span>
             </div>
-            <div className="border-l border-white/8 pl-6">
+            <div className="sm:border-l sm:border-white/8 sm:pl-6">
               <span className="font-mono text-2xl font-bold text-accent">{productionCount}</span>
               <span className="font-body text-xs text-muted ml-2">in production</span>
             </div>
-            <div className="border-l border-white/8 pl-6">
+            <div className="sm:border-l sm:border-white/8 sm:pl-6">
               <span className="font-mono text-2xl font-bold text-accent">5</span>
               <span className="font-body text-xs text-muted ml-2">languages</span>
             </div>
