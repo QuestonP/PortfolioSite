@@ -8,6 +8,7 @@ import Resume from './pages/Resume'
 import Contact from './pages/Contact'
 import Impact from './pages/Impact'
 import ChatWidget from './components/chat/ChatWidget'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         </main>
         <Footer />
         <ChatWidget />
+        <Analytics />
       </div>
     </BrowserRouter>
   )
