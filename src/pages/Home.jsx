@@ -11,7 +11,7 @@ function AnimatedRole({ role, color }) {
   return (
     <span
       key={role}
-      className="inline-block font-mono text-lg md:text-xl animate-role-fade"
+      className="inline-block font-mono text-base md:text-lg animate-role-fade tracking-wide"
       style={{ color }}
     >
       {role}
@@ -37,23 +37,26 @@ export default function Home() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-      {/* Dot grid background */}
-      <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" />
+      {/* Line grid background */}
+      <div className="absolute inset-0 line-grid opacity-60 pointer-events-none" />
 
       {/* Radial gradient vignette */}
       <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
 
-      {/* Accent glow orb */}
+      {/* Accent glow orb — tighter, more focused */}
       <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(102,126,234,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(79,143,252,0.06) 0%, transparent 60%)',
         }}
       />
 
+      {/* Horizontal accent line */}
+      <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/10 to-transparent pointer-events-none" />
+
       <div className="relative z-10 text-center max-w-5xl mx-auto">
         {/* Name */}
-        <h1 className="font-display font-extrabold text-text leading-none mb-6"
+        <h1 className="font-display font-extrabold text-text leading-none mb-6 tracking-tight"
             style={{ fontSize: 'clamp(2.8rem, 8vw, 5.5rem)' }}>
           Quest Parker
         </h1>
@@ -72,7 +75,7 @@ export default function Home() {
         </div>
 
         {/* Bio */}
-        <p className="font-body text-muted text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="font-body text-muted text-sm md:text-base max-w-2xl mx-auto mb-10 leading-relaxed">
           {profile.bio_short}
         </p>
 
@@ -80,30 +83,30 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             to="/projects"
-            className="group flex items-center gap-2 px-6 py-3 bg-accent text-bg font-body font-semibold text-sm tracking-wide transition-all duration-200 hover:bg-accent/90 hover:shadow-accent"
+            className="group flex items-center gap-2 px-6 py-3 bg-accent text-bg font-mono font-semibold text-xs tracking-widest uppercase transition-all duration-200 hover:bg-accent/90 hover:shadow-accent"
           >
             View Projects
-            <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
           <button
             onClick={() => setShowModal(true)}
-            className="flex items-center gap-2 px-6 py-3 border border-white/15 text-text font-body font-medium text-sm tracking-wide transition-all duration-200 hover:border-accent/50 hover:text-accent"
+            className="flex items-center gap-2 px-6 py-3 border border-white/[0.08] text-text font-mono font-medium text-xs tracking-widest uppercase transition-all duration-200 hover:border-accent/40 hover:text-accent"
           >
-            <Download size={16} />
+            <Download size={14} />
             Download Resume
           </button>
         </div>
 
         {/* Role pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mt-12">
+        <div className="flex flex-wrap items-center justify-center gap-2 mt-14">
           {profile.roles.map(role => (
             <span
               key={role.id}
-              className="font-mono text-xs px-3 py-1 border"
+              className="font-mono text-[10px] px-3 py-1 border tracking-wider"
               style={{
                 color: role.color,
-                borderColor: `${role.color}30`,
-                backgroundColor: `${role.color}08`,
+                borderColor: `${role.color}20`,
+                backgroundColor: `${role.color}06`,
               }}
             >
               {role.label}
@@ -122,7 +125,7 @@ export default function Home() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-muted hover:text-accent transition-colors duration-150 animate-bounce"
         aria-label="Scroll down"
       >
-        <ChevronDown size={20} />
+        <ChevronDown size={18} />
       </a>
 
       <ResumeDownloadModal open={showModal} onClose={() => setShowModal(false)} />

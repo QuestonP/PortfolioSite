@@ -25,7 +25,7 @@ export default function Resume() {
               href="/CurrentResume2PDF.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 border border-white/15 text-text font-body text-sm font-medium transition-all duration-200 hover:border-accent/50 hover:text-accent"
+              className="flex items-center gap-2 px-4 py-2 border border-white/[0.08] text-text font-body text-sm font-medium transition-all duration-200 hover:border-accent/50 hover:text-accent"
             >
               <ExternalLink size={14} />
               Open
@@ -41,7 +41,7 @@ export default function Resume() {
         </div>
 
         {/* PDF viewer — desktop: iframe, mobile: prompt to download */}
-        <div className="border border-white/8 overflow-hidden bg-surface">
+        <div className="border border-white/[0.04] overflow-hidden bg-surface">
           {/* Desktop iframe */}
           <div className="hidden sm:block">
             <iframe
@@ -70,7 +70,7 @@ export default function Resume() {
                 href="/CurrentResume2PDF.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-3 border border-white/15 text-text font-body text-sm font-medium transition-all duration-200 hover:border-accent/50 hover:text-accent"
+                className="flex items-center justify-center gap-2 px-4 py-3 border border-white/[0.08] text-text font-body text-sm font-medium transition-all duration-200 hover:border-accent/50 hover:text-accent"
               >
                 <ExternalLink size={14} />
                 Open in Browser
@@ -86,7 +86,7 @@ export default function Resume() {
             { label: 'Education',      value: 'BA Computer Science (NLP)', sub: 'UNC Chapel Hill — 2024' },
             { label: 'Certification',  value: 'Google Advanced Data Analytics', sub: 'Dec 2025' },
           ].map(item => (
-            <div key={item.label} className="border border-white/8 bg-surface p-4">
+            <div key={item.label} className="border border-white/[0.04] bg-surface p-4">
               <p className="font-mono text-xs text-muted uppercase tracking-wider mb-1">{item.label}</p>
               <p className="font-display font-bold text-text text-sm">{item.value}</p>
               <p className="font-body text-xs text-muted mt-0.5">{item.sub}</p>

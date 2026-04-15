@@ -13,12 +13,12 @@ export default function ChatWidget() {
         <button
           disabled
           title="AI Chat — Coming Soon"
-          className="w-12 h-12 flex items-center justify-center bg-surface border border-white/10 text-muted cursor-not-allowed shadow-lg"
+          className="w-12 h-12 flex items-center justify-center bg-surface border border-white/[0.06] text-muted cursor-not-allowed shadow-lg"
           aria-label="AI Chat coming soon"
         >
           <MessageCircle size={20} className="opacity-40" />
         </button>
-        <div className="absolute bottom-full right-0 mb-2 px-2.5 py-1 bg-surface2 border border-white/10 text-xs font-mono text-muted whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
+        <div className="absolute bottom-full right-0 mb-2 px-2.5 py-1 bg-surface2 border border-white/[0.06] text-xs font-mono text-muted whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
           AI Chat — Coming Soon
         </div>
       </div>

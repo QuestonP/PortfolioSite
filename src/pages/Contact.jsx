@@ -56,7 +56,7 @@ export default function Contact() {
 
   const inputClass = field =>
     `w-full bg-surface2 border font-body text-sm text-text placeholder-muted px-4 py-3 outline-none transition-all duration-150 focus:border-accent/60 ${
-      errors[field] ? 'border-red-500/60' : 'border-white/10'
+      errors[field] ? 'border-red-500/60' : 'border-white/[0.06]'
     }`
 
   return (
@@ -81,7 +81,7 @@ export default function Contact() {
           {/* Contact info */}
           <div className="lg:col-span-2 space-y-6" >
             <RevealWrapper delay={50}>
-              <div className="border border-white/8 bg-surface p-6 space-y-4">
+              <div className="border border-white/[0.04] bg-surface p-6 space-y-4">
                 <p className="font-mono text-xs text-muted uppercase tracking-wider mb-4">Direct</p>
                 <a
                   href={`mailto:${profile.email}`}
@@ -98,7 +98,7 @@ export default function Contact() {
             </RevealWrapper>
 
             <RevealWrapper delay={100}>
-              <div className="border border-white/8 bg-surface p-6">
+              <div className="border border-white/[0.04] bg-surface p-6">
                 <p className="font-mono text-xs text-muted uppercase tracking-wider mb-4">Socials</p>
                 <div className="space-y-3">
                   <a
@@ -140,7 +140,7 @@ export default function Contact() {
                   </button>
                 </div>
               ) : (
-                <form ref={formRef} onSubmit={handleSubmit} className="border border-white/8 bg-surface p-6 space-y-4" noValidate>
+                <form ref={formRef} onSubmit={handleSubmit} className="border border-white/[0.04] bg-surface p-6 space-y-4" noValidate>
                   <p className="font-mono text-xs text-muted uppercase tracking-wider mb-5">Send a message</p>
                   <div>
                     <input

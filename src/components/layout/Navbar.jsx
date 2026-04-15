@@ -32,13 +32,13 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-bg/90 backdrop-blur-md border-b border-white/5 shadow-lg'
+            ? 'bg-bg/95 backdrop-blur-md border-b border-white/[0.04] shadow-lg shadow-black/30'
             : 'bg-transparent'
         }`}
       >
         <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <NavLink to="/" className="font-mono text-sm font-bold tracking-widest text-accent uppercase">
+          <NavLink to="/" className="font-mono text-sm font-bold tracking-widest text-accent uppercase hover:text-text transition-colors duration-150">
             QP
           </NavLink>
 
@@ -50,7 +50,7 @@ export default function Navbar() {
                 to={to}
                 end={to === '/'}
                 className={({ isActive }) =>
-                  `font-body text-xs font-medium tracking-widest uppercase transition-colors duration-150 ${
+                  `font-mono text-[10px] font-medium tracking-[0.2em] uppercase transition-colors duration-150 ${
                     isActive ? 'text-accent' : 'text-muted hover:text-text'
                   }`
                 }
@@ -66,19 +66,19 @@ export default function Navbar() {
               href={profile.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted hover:text-text transition-colors duration-150 p-1"
+              className="text-muted hover:text-accent transition-colors duration-150 p-1"
               aria-label="GitHub"
             >
-              <Github size={18} />
+              <Github size={16} />
             </a>
             <a
               href={profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted hover:text-text transition-colors duration-150 p-1"
+              className="text-muted hover:text-accent transition-colors duration-150 p-1"
               aria-label="LinkedIn"
             >
-              <Linkedin size={18} />
+              <Linkedin size={16} />
             </a>
             <button
               className="md:hidden text-muted hover:text-text transition-colors duration-150 p-1 ml-1"
@@ -93,7 +93,7 @@ export default function Navbar() {
 
       {/* Mobile menu overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-bg/95 backdrop-blur-md flex flex-col items-center justify-center transition-all duration-300 md:hidden ${
+        className={`fixed inset-0 z-40 bg-bg/98 backdrop-blur-md flex flex-col items-center justify-center transition-all duration-300 md:hidden ${
           menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -113,10 +113,10 @@ export default function Navbar() {
             </NavLink>
           ))}
           <div className="flex gap-6 mt-6">
-            <a href={profile.github} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-text transition-colors">
+            <a href={profile.github} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-accent transition-colors">
               <Github size={22} />
             </a>
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-text transition-colors">
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-accent transition-colors">
               <Linkedin size={22} />
             </a>
           </div>

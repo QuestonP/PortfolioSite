@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --color-bg:          #0a0a0f;
-  --color-surface:     #111118;
-  --color-surface-2:   #1a1a24;
-  --color-border:      rgba(255, 255, 255, 0.07);
-  --color-border-accent: rgba(102, 126, 234, 0.35);
-  --color-accent:      #667eea;
-  --color-accent-2:    #764ba2;
-  --color-accent-glow: rgba(102, 126, 234, 0.15);
-  --color-text:        #f3f4f6;
-  --color-muted:       #6b7280;
+  --color-bg:          #050508;
+  --color-surface:     #0c0c12;
+  --color-surface-2:   #13131d;
+  --color-border:      rgba(255, 255, 255, 0.06);
+  --color-border-accent: rgba(79, 143, 252, 0.4);
+  --color-accent:      #4f8ffc;
+  --color-accent-2:    #6c5ce7;
+  --color-accent-glow: rgba(79, 143, 252, 0.12);
+  --color-text:        #e8eaed;
+  --color-muted:       #5a5f6d;
 }
 
 * {
@@ -33,39 +33,120 @@ body {
   overflow-x: hidden;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Scrollbar — sharp and minimal */
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: var(--color-subtle, #374151); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #1e2030; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
 
 /* Selection */
 ::selection {
-  background: rgba(102, 126, 234, 0.3);
+  background: rgba(79, 143, 252, 0.25);
   color: var(--color-text);
 }
 
-/* Grid dot background for hero */
+/* Grid dot background for hero — tighter, sharper */
 .dot-grid {
-  background-image: radial-gradient(rgba(102, 126, 234, 0.15) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image: radial-gradient(rgba(79, 143, 252, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-/* Gradient text */
+/* Cross-hatch grid alternative */
+.line-grid {
+  background-image:
+    linear-gradient(rgba(79, 143, 252, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 143, 252, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Gradient text — sharper, cooler */
 .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #a78bfa 50%, #764ba2 100%);
+  background: linear-gradient(135deg, #4f8ffc 0%, #6c5ce7 50%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Glowing border on hover */
+/* Radial fade background */
+.bg-radial-fade {
+  background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 70%);
+}
+
+/* Glowing border on hover — sharper, electric */
 .glow-border {
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .glow-border:hover {
-  border-color: rgba(102, 126, 234, 0.5);
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.1);
+  border-color: rgba(79, 143, 252, 0.35);
+  box-shadow:
+    0 0 20px rgba(79, 143, 252, 0.08),
+    inset 0 0 20px rgba(79, 143, 252, 0.02);
+}
+
+/* Card with corner accent marks */
+.card-corners {
+  position: relative;
+}
+.card-corners::before,
+.card-corners::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.card-corners::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.card-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+.card-corners:hover::before,
+.card-corners:hover::after {
+  opacity: 1;
+}
+
+/* Accent top line for cards */
+.accent-top {
+  position: relative;
+}
+.accent-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.4;
+}
+
+/* Horizontal rule with accent */
+.hr-accent {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(79, 143, 252, 0.3), transparent);
 }
 
 /* Fade in animation for sections */
@@ -86,3 +167,9 @@ body {
   -ms-overflow-style: none;
 }
 .tags-scroll::-webkit-scrollbar { display: none; }
+
+/* Sharper focus ring */
+*:focus-visible {
+  outline: 1px solid var(--color-accent);
+  outline-offset: 2px;
+}

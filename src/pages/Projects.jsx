@@ -45,7 +45,7 @@ function ProjectCard({ project, index }) {
 
   return (
     <RevealWrapper delay={(index % 3) * 80}>
-      <div className="border border-white/8 bg-surface h-full flex flex-col glow-border transition-all duration-200 hover:bg-surface2">
+      <div className="border border-white/[0.04] bg-surface h-full flex flex-col glow-border card-corners transition-all duration-200 hover:bg-surface2">
         {/* Header */}
         <div className="p-5 border-b border-white/5">
           <div className="flex items-start justify-between gap-3 mb-3">
@@ -78,7 +78,7 @@ function ProjectCard({ project, index }) {
             </div>
           )}
           {!project.impact_quantified && project.impact && (
-            <div className="flex items-center gap-2 py-2 px-3 bg-white/3 border border-white/8">
+            <div className="flex items-center gap-2 py-2 px-3 bg-white/3 border border-white/[0.04]">
               <TrendingUp size={13} className="text-muted flex-shrink-0" />
               <span className="font-body text-xs text-muted">{project.impact}</span>
             </div>
@@ -89,7 +89,7 @@ function ProjectCard({ project, index }) {
             {project.tech_stack.map(tech => (
               <span
                 key={tech}
-                className="font-mono text-xs px-2 py-0.5 border border-white/8 text-muted"
+                className="font-mono text-xs px-2 py-0.5 border border-white/[0.04] text-muted"
               >
                 {tech}
               </span>
@@ -165,11 +165,11 @@ export default function Projects() {
               <span className="font-mono text-2xl font-bold text-accent">{totalProjects}</span>
               <span className="font-body text-xs text-muted ml-2">total projects</span>
             </div>
-            <div className="sm:border-l sm:border-white/8 sm:pl-6">
+            <div className="sm:border-l sm:border-white/[0.04] sm:pl-6">
               <span className="font-mono text-2xl font-bold text-accent">{productionCount}</span>
               <span className="font-body text-xs text-muted ml-2">in production</span>
             </div>
-            <div className="sm:border-l sm:border-white/8 sm:pl-6">
+            <div className="sm:border-l sm:border-white/[0.04] sm:pl-6">
               <span className="font-mono text-2xl font-bold text-accent">5</span>
               <span className="font-body text-xs text-muted ml-2">languages</span>
             </div>

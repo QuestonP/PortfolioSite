@@ -25,7 +25,7 @@ function SectionLabel({ children }) {
   return (
     <div className="flex items-center gap-3 mb-8">
       <span className="font-mono text-xs text-accent uppercase tracking-widest">{children}</span>
-      <div className="flex-1 border-t border-white/8" />
+      <div className="flex-1 border-t border-white/[0.04]" />
     </div>
   )
 }
@@ -69,7 +69,7 @@ export default function About() {
               {
                 index: '01',
                 label: 'Enterprise Pharma Deal Win',
-                color: '#667eea',
+                color: '#4f8ffc',
                 impact: 'New logo — global top-10 pharma',
                 description:
                   'Developed an agentic workflow proof-of-concept for one of the largest pharmaceutical companies in the world. The PoC surfaced a massive, previously unmeasured value opportunity and provided a concrete resolution path — directly winning the enterprise deal.',
@@ -97,7 +97,7 @@ export default function About() {
             ].map((highlight, i) => (
               <RevealWrapper key={highlight.index} delay={i * 100}>
                 <div
-                  className="border bg-surface p-6 glow-border h-full flex flex-col transition-all duration-200 hover:bg-surface2"
+                  className="border bg-surface p-6 glow-border card-corners h-full flex flex-col transition-all duration-200 hover:bg-surface2"
                   style={{ borderColor: `${highlight.color}20` }}
                 >
                   <div className="flex items-start justify-between gap-3 mb-4">
@@ -137,7 +137,7 @@ export default function About() {
                     {highlight.tags.map(tag => (
                       <span
                         key={tag}
-                        className="font-mono text-xs px-2 py-0.5 border border-white/8 text-muted"
+                        className="font-mono text-xs px-2 py-0.5 border border-white/[0.04] text-muted"
                       >
                         {tag}
                       </span>
@@ -190,7 +190,7 @@ export default function About() {
                   {cat.skills.map(skill => (
                     <span
                       key={skill}
-                      className="font-mono text-xs px-2.5 py-1 border border-white/8 bg-surface text-muted hover:border-accent/40 hover:text-text hover:bg-accent/5 transition-all duration-150 cursor-default"
+                      className="font-mono text-xs px-2.5 py-1 border border-white/[0.04] bg-surface text-muted hover:border-accent/40 hover:text-text hover:bg-accent/5 transition-all duration-150 cursor-default"
                     >
                       {skill}
                     </span>
@@ -218,8 +218,8 @@ export default function About() {
                     <div
                       className="absolute left-0 top-1.5 w-6 h-6 border-2 flex items-center justify-center"
                       style={{
-                        borderColor: pos.current ? '#667eea' : 'rgba(255,255,255,0.15)',
-                        backgroundColor: pos.current ? 'rgba(102,126,234,0.15)' : 'transparent',
+                        borderColor: pos.current ? '#4f8ffc' : 'rgba(255,255,255,0.08)',
+                        backgroundColor: pos.current ? 'rgba(79,143,252,0.1)' : 'transparent',
                       }}
                     >
                       {pos.current && (
@@ -227,7 +227,7 @@ export default function About() {
                       )}
                     </div>
 
-                    <div className="border border-white/7 bg-surface p-5 glow-border">
+                    <div className="border border-white/[0.04] bg-surface p-5 glow-border">
                       <div className="flex flex-col sm:flex-row sm:flex-wrap items-start justify-between gap-1 sm:gap-2 mb-3">
                         <div>
                           <h3 className="font-display font-bold text-text text-base">{pos.title}</h3>
@@ -273,7 +273,7 @@ export default function About() {
                         {pos.tags.map(tag => (
                           <span
                             key={tag}
-                            className="font-mono text-xs px-2 py-0.5 border border-white/8 text-muted"
+                            className="font-mono text-xs px-2 py-0.5 border border-white/[0.04] text-muted"
                           >
                             {tag}
                           </span>
@@ -296,7 +296,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             {/* Origin story */}
             <RevealWrapper delay={50}>
-              <div className="border border-white/8 bg-surface p-6 glow-border h-full">
+              <div className="border border-white/[0.04] bg-surface p-6 glow-border h-full">
                 <p className="font-mono text-xs text-accent uppercase tracking-wider mb-4">Origin Story</p>
                 <p className="font-body text-sm text-muted leading-relaxed mb-4">
                   I grew up in <span className="text-text font-medium">Bridgeport, CT</span> — the second of eight siblings. Growing up in a big family in Bridgeport shaped how I think: fast, collaborative, and always looking for leverage.
@@ -312,7 +312,7 @@ export default function About() {
 
             {/* Quick facts */}
             <RevealWrapper delay={100}>
-              <div className="border border-white/8 bg-surface p-6 glow-border h-full">
+              <div className="border border-white/[0.04] bg-surface p-6 glow-border h-full">
                 <p className="font-mono text-xs text-accent uppercase tracking-wider mb-4">Quick Facts</p>
                 <ul className="space-y-3">
                   {[
@@ -337,7 +337,7 @@ export default function About() {
 
           {/* Interests */}
           <RevealWrapper delay={120}>
-            <div className="border border-white/8 bg-surface p-6 glow-border">
+            <div className="border border-white/[0.04] bg-surface p-6 glow-border">
               <p className="font-mono text-xs text-accent uppercase tracking-wider mb-5">Outside the Terminal</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {[
@@ -352,7 +352,7 @@ export default function About() {
                 ].map(({ icon, label }) => (
                   <div
                     key={label}
-                    className="flex items-center gap-3 px-4 py-3 border border-white/8 hover:border-accent/30 hover:bg-accent/5 transition-all duration-150"
+                    className="flex items-center gap-3 px-4 py-3 border border-white/[0.04] hover:border-accent/30 hover:bg-accent/5 transition-all duration-150"
                   >
                     <span className="text-lg">{icon}</span>
                     <span className="font-body text-sm text-muted">{label}</span>
@@ -371,7 +371,7 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {education.degrees.map(deg => (
               <RevealWrapper key={deg.id}>
-                <div className="border border-white/8 bg-surface p-5 glow-border">
+                <div className="border border-white/[0.04] bg-surface p-5 glow-border">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div>
                       <h3 className="font-display font-bold text-text text-sm">{deg.institution}</h3>
@@ -399,7 +399,7 @@ export default function About() {
             ))}
             {education.certifications?.map(cert => (
               <RevealWrapper key={cert.id}>
-                <div className="border border-white/8 bg-surface p-5 glow-border">
+                <div className="border border-white/[0.04] bg-surface p-5 glow-border">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div>
                       <h3 className="font-display font-bold text-text text-sm">{cert.name}</h3>
@@ -408,9 +408,9 @@ export default function About() {
                     <span
                       className="font-mono text-xs px-2 py-0.5 whitespace-nowrap"
                       style={{
-                        color: '#667eea',
-                        backgroundColor: 'rgba(102,126,234,0.1)',
-                        border: '1px solid rgba(102,126,234,0.2)',
+                        color: '#4f8ffc',
+                        backgroundColor: 'rgba(79,143,252,0.1)',
+                        border: '1px solid rgba(79,143,252,0.2)',
                       }}
                     >
                       {cert.date?.split('-')[0]}

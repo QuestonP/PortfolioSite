@@ -74,7 +74,7 @@ export default function ResumeDownloadModal({ open, onClose }) {
 
   const inputClass = field =>
     `w-full bg-surface2 border font-body text-sm text-text placeholder-muted px-4 py-3 outline-none transition-all duration-150 focus:border-accent/60 ${
-      errors[field] ? 'border-red-500/60' : 'border-white/10'
+      errors[field] ? 'border-red-500/60' : 'border-white/[0.06]'
     }`
 
   return (
@@ -86,7 +86,7 @@ export default function ResumeDownloadModal({ open, onClose }) {
       <div className="absolute inset-0 bg-bg/80 backdrop-blur-sm" />
 
       {/* Modal */}
-      <div className="relative w-full max-w-md bg-surface border border-white/10 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-md bg-surface border border-white/[0.06] shadow-2xl max-h-[90vh] overflow-y-auto">
         {/* Close button */}
         <button
           onClick={onClose}

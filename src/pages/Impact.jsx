@@ -21,7 +21,7 @@ function SectionLabel({ children }) {
   return (
     <div className="flex items-center gap-3 mb-8">
       <span className="font-mono text-xs text-accent uppercase tracking-widest">{children}</span>
-      <div className="flex-1 border-t border-white/8" />
+      <div className="flex-1 border-t border-white/[0.04]" />
     </div>
   )
 }
@@ -71,7 +71,7 @@ function AnimatedCounter({ value, prefix = '', suffix = '', duration = 2000 }) {
   )
 }
 
-function ProgressBar({ label, value, maxValue, displayValue, color = '#667eea', delay = 0 }) {
+function ProgressBar({ label, value, maxValue, displayValue, color = '#4f8ffc', delay = 0 }) {
   const [visible, setVisible] = useState(false)
   const ref = useRef(null)
 
@@ -112,13 +112,13 @@ function ProgressBar({ label, value, maxValue, displayValue, color = '#667eea', 
 
 const HEADLINE_KPIS = [
   { value: 110, prefix: '$', suffix: 'M+', label: 'Total Value Realized', color: '#34d399' },
-  { value: 10, prefix: '$', suffix: 'M+', label: 'Revenue Directly Influenced', color: '#667eea' },
+  { value: 10, prefix: '$', suffix: 'M+', label: 'Revenue Directly Influenced', color: '#4f8ffc' },
   { value: 2, prefix: '', suffix: 'M+', label: 'Data Points Analyzed', color: '#a78bfa' },
   { value: 80, prefix: '', suffix: '%', label: 'Max Efficiency Gain', color: '#fb923c' },
 ]
 
 const DEALS = [
-  { amount: 4000, label: '$4M', description: 'Agentic AI PoC \u2192 Contract Expansion', note: 'Top-3 deal in company history', color: '#667eea' },
+  { amount: 4000, label: '$4M', description: 'Agentic AI PoC \u2192 Contract Expansion', note: 'Top-3 deal in company history', color: '#4f8ffc' },
   { amount: 3500, label: '$3.5M', description: 'Enterprise Pharma Annual Renewal', note: '$100M+ realized value', color: '#34d399' },
   { amount: 1500, label: '$1.5M', description: 'AI-Led Tax Matching Commercial Deal', note: 'Moved to production', color: '#a78bfa' },
   { amount: 800, label: '$800K', description: 'Churn-Risk Account Saved', note: '24-week value sprint', color: '#fb923c' },
@@ -127,13 +127,13 @@ const DEALS = [
 
 const VALUE_CARDS = [
   { value: '$100M+', label: 'Realized Value', description: 'Enterprise-grade process intelligence for global retail pharmaceutical client', color: '#34d399' },
-  { value: '$60M', label: 'Free Cash Flow', description: 'Opportunity surfaced through advanced analytics and process mining', color: '#667eea' },
+  { value: '$60M', label: 'Free Cash Flow', description: 'Opportunity surfaced through advanced analytics and process mining', color: '#4f8ffc' },
   { value: '$1B', label: 'Blocked Revenue', description: 'Unlocked for tobacco manufacturer via AI-powered allocation review', color: '#a78bfa' },
   { value: '$5M', label: 'P&L Impact', description: 'Delivered through process intelligence and workflow automation', color: '#fb923c' },
 ]
 
 const EFFICIENCY_METRICS = [
-  { label: 'Manual review time reduction (MSA analysis)', value: 80, maxValue: 100, displayValue: '80%', color: '#667eea' },
+  { label: 'Manual review time reduction (MSA analysis)', value: 80, maxValue: 100, displayValue: '80%', color: '#4f8ffc' },
   { label: 'Deployment time reduction (CI/CD)', value: 60, maxValue: 100, displayValue: '60%', color: '#34d399' },
   { label: 'Onboarding acceleration', value: 50, maxValue: 100, displayValue: '50%', color: '#a78bfa' },
   { label: 'Web traffic increase', value: 20, maxValue: 100, displayValue: '20%', color: '#f472b6' },
@@ -148,7 +148,7 @@ const SCALE_METRICS = [
 
 const INDUSTRIES = [
   { icon: '\u{1F48A}', name: 'Pharmaceutical', detail: 'Global top-10 pharma company', color: '#34d399' },
-  { icon: '\u{1F697}', name: 'Automotive', detail: 'Fortune 500 manufacturer', color: '#667eea' },
+  { icon: '\u{1F697}', name: 'Automotive', detail: 'Fortune 500 manufacturer', color: '#4f8ffc' },
   { icon: '\u{1F6E2}', name: 'Tobacco', detail: "World's largest manufacturer", color: '#a78bfa' },
   { icon: '\u{1F684}', name: 'Rail', detail: 'First US high-speed rail', color: '#fb923c' },
   { icon: '\u{1F6D2}', name: 'Retail / E-commerce', detail: 'Marketplace analytics & supply chain', color: '#f472b6' },
@@ -160,7 +160,7 @@ const IMPACT_STORIES = [
     title: 'From PoC to Top-3 Deal',
     text: 'Architected an end-to-end agentic AI solution for dispute classification and automated resolution at a global top-10 pharmaceutical company. What started as a 3-month proof of concept became the foundation for a $4M contract expansion \u2014 ranked among the top 3 deals in company history.',
     tags: ['Agentic AI', 'Process Orchestration', 'Enterprise Deal'],
-    color: '#667eea',
+    color: '#4f8ffc',
   },
   {
     title: 'Saving an $800K Account',
@@ -204,7 +204,7 @@ export default function Impact() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {HEADLINE_KPIS.map((kpi, i) => (
             <RevealWrapper key={kpi.label} delay={i * 80}>
-              <div className="border border-white/8 bg-surface p-4 sm:p-6 glow-border text-center">
+              <div className="border border-white/[0.04] bg-surface p-4 sm:p-6 glow-border text-center">
                 <AnimatedCounter
                   value={kpi.value}
                   prefix={kpi.prefix}
@@ -244,7 +244,7 @@ export default function Impact() {
             {VALUE_CARDS.map((card, i) => (
               <RevealWrapper key={card.label} delay={i * 80}>
                 <div
-                  className="border bg-surface p-6 glow-border h-full flex flex-col"
+                  className="border bg-surface p-6 glow-border card-corners h-full flex flex-col"
                   style={{ borderColor: `${card.color}20` }}
                 >
                   <span
@@ -272,7 +272,7 @@ export default function Impact() {
           </RevealWrapper>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <RevealWrapper>
-              <div className="border border-white/8 bg-surface p-6 glow-border space-y-5">
+              <div className="border border-white/[0.04] bg-surface p-6 glow-border space-y-5">
                 <p className="font-mono text-xs text-accent uppercase tracking-wider mb-2">Percentage Improvements</p>
                 {EFFICIENCY_METRICS.map((m, i) => (
                   <ProgressBar key={m.label} {...m} delay={i * 150} />
@@ -281,11 +281,11 @@ export default function Impact() {
             </RevealWrapper>
 
             <RevealWrapper delay={100}>
-              <div className="border border-white/8 bg-surface p-6 glow-border">
+              <div className="border border-white/[0.04] bg-surface p-6 glow-border">
                 <p className="font-mono text-xs text-accent uppercase tracking-wider mb-5">Scale of Operations</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {SCALE_METRICS.map(m => (
-                    <div key={m.label} className="border border-white/5 bg-surface2 p-4">
+                    <div key={m.label} className="border border-white/[0.03] bg-surface2 p-4">
                       <span className="font-display font-extrabold text-2xl text-text">{m.value}</span>
                       <p className="font-mono text-xs text-accent mt-1">{m.label}</p>
                       <p className="font-body text-xs text-muted mt-1 leading-relaxed">{m.description}</p>
@@ -329,7 +329,7 @@ export default function Impact() {
             {IMPACT_STORIES.map((story, i) => (
               <RevealWrapper key={story.title} delay={i * 100}>
                 <div
-                  className="border bg-surface p-6 glow-border h-full flex flex-col"
+                  className="border bg-surface p-6 glow-border card-corners h-full flex flex-col"
                   style={{ borderColor: `${story.color}20` }}
                 >
                   <div
@@ -349,7 +349,7 @@ export default function Impact() {
                     {story.tags.map(tag => (
                       <span
                         key={tag}
-                        className="font-mono text-xs px-2 py-0.5 border border-white/8 text-muted"
+                        className="font-mono text-xs px-2 py-0.5 border border-white/[0.04] text-muted"
                       >
                         {tag}
                       </span>
@@ -382,7 +382,7 @@ function DealBar({ deal, pct, delay }) {
   }, [])
 
   return (
-    <div ref={ref} className="border border-white/5 bg-surface p-4 glow-border">
+    <div ref={ref} className="border border-white/[0.03] bg-surface p-4 glow-border">
       <div className="flex flex-col sm:flex-row sm:items-center gap-3">
         <span
           className="font-display font-extrabold text-xl sm:w-20 flex-shrink-0"
