@@ -30,13 +30,6 @@ export default function Home() {
       <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-bg to-transparent pointer-events-none" aria-hidden />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
-        <Reveal delay={0.05}>
-          <p className="font-mono text-xs uppercase tracking-label text-muted2 mb-8">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-success mr-2 align-middle" />
-            Available for new engagements
-          </p>
-        </Reveal>
-
         <h1 className="font-display font-semibold text-text leading-[1.02] tracking-[-0.035em] mb-6 text-balance"
             style={{ fontSize: 'clamp(2.6rem, 9vw, 5.5rem)' }}>
           <LetterReveal text="Data solutions that move numbers." />

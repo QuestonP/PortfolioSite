@@ -58,7 +58,7 @@ export default function Contact() {
 
         <Reveal delay={0.2}>
           <p className="font-body text-muted text-lg max-w-xl leading-relaxed text-balance mb-10">
-            Open to consulting engagements, full-time roles, and interesting problems. I respond within a day.
+            Reach out about the work, the research, or anything worth a conversation. I respond within a day.
           </p>
         </Reveal>
 
