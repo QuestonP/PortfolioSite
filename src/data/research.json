@@ -1,0 +1,16 @@
+{
+  "_meta": { "schema": "research-v1", "last_updated": "2026-04-15" },
+  "projects": [
+    {
+      "id": "five-pillars-ai",
+      "slug": "five-pillars-ai",
+      "title": "Five Pillars for Winning Together in the Age of AI",
+      "subtitle": "A Strategic Research Debrief",
+      "description": "A deep-dive into the five foundational pillars that organizations must embrace to thrive collaboratively in an AI-driven landscape — spanning leadership alignment, workforce transformation, ethical frameworks, technical infrastructure, and ecosystem strategy.",
+      "date": "2026-04",
+      "status": "in-progress",
+      "tags": ["AI Strategy", "Enterprise", "Leadership", "Workforce Transformation"],
+      "color": "#4f8ffc"
+    }
+  ]
+}

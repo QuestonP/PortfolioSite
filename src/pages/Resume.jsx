@@ -1,100 +1,118 @@
 import { useState } from 'react'
-import { Download, ExternalLink } from 'lucide-react'
+import { Download, ExternalLink, FileText } from 'lucide-react'
 import ResumeDownloadModal from '../components/ResumeDownloadModal'
+import Container from '../components/ui/Container'
+import Button from '../components/ui/Button'
+import Reveal from '../motion/Reveal'
 
 export default function Resume() {
   const [showModal, setShowModal] = useState(false)
 
   return (
-    <div className="pt-24 pb-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="relative">
+      <div className="absolute inset-0 bg-vignette pointer-events-none" aria-hidden />
 
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-          <div>
-            <p className="font-mono text-xs text-accent uppercase tracking-widest mb-2">Resume</p>
-            <h1 className="font-display font-bold text-3xl md:text-4xl text-text">
-              Quest Parker
-            </h1>
-            <p className="font-body text-sm text-muted mt-1">
-              AI Solutions Engineer · Applied AI Champion · BA Computer Science (NLP) — UNC Chapel Hill
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <a
-              href="/CurrentResume2PDF.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 border border-white/[0.08] text-text font-body text-sm font-medium transition-all duration-200 hover:border-accent/50 hover:text-accent"
-            >
-              <ExternalLink size={14} />
-              Open
-            </a>
-            <button
-              onClick={() => setShowModal(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-accent text-bg font-body text-sm font-semibold transition-all duration-200 hover:bg-accent/90 hover:shadow-accent"
-            >
-              <Download size={14} />
-              Download PDF
-            </button>
-          </div>
-        </div>
-
-        {/* PDF viewer — desktop: iframe, mobile: prompt to download */}
-        <div className="border border-white/[0.04] overflow-hidden bg-surface">
-          {/* Desktop iframe */}
-          <div className="hidden sm:block">
-            <iframe
-              src="/CurrentResume2PDF.pdf"
-              title="Quest Parker Resume"
-              className="w-full"
-              style={{ height: 'calc(100vh - 200px)', minHeight: '600px' }}
-            />
-          </div>
-          {/* Mobile fallback */}
-          <div className="sm:hidden flex flex-col items-center justify-center py-16 px-6 text-center">
-            <Download size={32} className="text-accent mb-4" />
-            <h3 className="font-display font-bold text-text text-lg mb-2">View Resume</h3>
-            <p className="font-body text-sm text-muted mb-6 leading-relaxed">
-              PDF preview isn't available on mobile. Tap below to download or open the full resume.
-            </p>
-            <div className="flex flex-col gap-3 w-full max-w-xs">
-              <button
-                onClick={() => setShowModal(true)}
-                className="flex items-center justify-center gap-2 px-4 py-3 bg-accent text-bg font-body text-sm font-semibold transition-all duration-200 hover:bg-accent/90"
-              >
-                <Download size={14} />
-                Download PDF
-              </button>
-              <a
+      <Container size="default" className="relative pt-12 md:pt-16 pb-24">
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-label text-muted2 mb-5">Resume</p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div>
+              <h1 className="font-display font-semibold text-text tracking-[-0.03em] leading-[1.05] text-balance mb-3"
+                  style={{ fontSize: 'clamp(2.2rem, 5vw, 3.2rem)' }}>
+                Quest Parker
+              </h1>
+              <p className="text-muted text-lg leading-relaxed max-w-xl">
+                AI Solutions Engineer at Celonis · Applied AI Champion · BA Computer Science, NLP concentration — UNC Chapel Hill.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <Button
+                as="a"
                 href="/CurrentResume2PDF.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-3 border border-white/[0.08] text-text font-body text-sm font-medium transition-all duration-200 hover:border-accent/50 hover:text-accent"
+                variant="secondary"
+                size="md"
               >
                 <ExternalLink size={14} />
-                Open in Browser
-              </a>
+                Open
+              </Button>
+              <Button onClick={() => setShowModal(true)} variant="primary" size="md">
+                <Download size={14} />
+                Download PDF
+              </Button>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        {/* Resume highlights */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {[
-            { label: 'Current Role',   value: 'AI Solutions Engineer, Applied AI Champion', sub: 'Celonis' },
-            { label: 'Education',      value: 'BA Computer Science (NLP)', sub: 'UNC Chapel Hill — 2024' },
-            { label: 'Certification',  value: 'Google Advanced Data Analytics', sub: 'Dec 2025' },
-          ].map(item => (
-            <div key={item.label} className="border border-white/[0.04] bg-surface p-4">
-              <p className="font-mono text-xs text-muted uppercase tracking-wider mb-1">{item.label}</p>
-              <p className="font-display font-bold text-text text-sm">{item.value}</p>
-              <p className="font-body text-xs text-muted mt-0.5">{item.sub}</p>
+        <Reveal delay={0.1}>
+          <div className="relative mx-auto max-w-4xl border border-border rounded-lg overflow-hidden bg-surface shadow-paper">
+            <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-surface2">
+              <div className="flex items-center gap-2">
+                <FileText size={12} className="text-muted2" />
+                <span className="font-mono text-[11px] uppercase tracking-label text-muted2">
+                  CurrentResume2PDF.pdf
+                </span>
+              </div>
+              <span className="font-mono text-[11px] text-muted3">Updated 2026</span>
             </div>
-          ))}
-        </div>
 
-      </div>
+            <div className="hidden sm:block">
+              <iframe
+                src="/CurrentResume2PDF.pdf"
+                title="Quest Parker resume"
+                className="w-full block bg-white"
+                style={{ height: 'calc(100vh - 240px)', minHeight: '640px' }}
+              />
+            </div>
+
+            <div className="sm:hidden flex flex-col items-center justify-center py-14 px-6 text-center bg-surface">
+              <FileText size={28} className="text-muted2 mb-4" />
+              <h3 className="font-display font-medium text-text text-lg mb-2">PDF preview unavailable on mobile</h3>
+              <p className="text-sm text-muted mb-6 leading-relaxed max-w-xs">
+                Tap below to download the full resume or open it in your browser.
+              </p>
+              <div className="flex flex-col gap-2 w-full max-w-xs">
+                <Button onClick={() => setShowModal(true)} variant="primary" size="md" className="w-full">
+                  <Download size={14} />
+                  Download PDF
+                </Button>
+                <Button
+                  as="a"
+                  href="/CurrentResume2PDF.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="secondary"
+                  size="md"
+                  className="w-full"
+                >
+                  <ExternalLink size={14} />
+                  Open in browser
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <section aria-label="Printable summary" className="mt-16 max-w-3xl mx-auto">
+            <p className="font-mono text-xs uppercase tracking-label text-muted3 mb-5">Printable summary</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
+              {[
+                { label: 'Current role',   value: 'AI Solutions Engineer',  sub: 'Celonis · Applied AI Champion' },
+                { label: 'Education',      value: 'BA Computer Science',    sub: 'UNC Chapel Hill · NLP · 2024' },
+                { label: 'Certification',  value: 'Google Advanced Data Analytics', sub: 'December 2025' },
+              ].map(item => (
+                <div key={item.label} className="bg-surface px-5 py-5">
+                  <p className="font-mono text-[11px] uppercase tracking-label text-muted3 mb-2">{item.label}</p>
+                  <p className="font-display font-medium text-text text-base leading-snug">{item.value}</p>
+                  <p className="text-sm text-muted2 mt-1">{item.sub}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </Reveal>
+      </Container>
 
       <ResumeDownloadModal open={showModal} onClose={() => setShowModal(false)} />
     </div>

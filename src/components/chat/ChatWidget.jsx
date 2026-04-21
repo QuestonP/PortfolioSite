@@ -1,25 +1,28 @@
 import { useState } from 'react'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { MessageCircle, X } from 'lucide-react'
 import ChatPanel from './ChatPanel'
+import { EASE } from '../../motion/tokens'
 
 const CHAT_ENABLED = import.meta.env.VITE_CHAT_ENABLED === 'true'
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
+  const reduce = useReducedMotion()
 
   if (!CHAT_ENABLED) {
     return (
       <div className="fixed bottom-6 right-6 z-50 group">
         <button
           disabled
-          title="AI Chat — Coming Soon"
-          className="w-12 h-12 flex items-center justify-center bg-surface border border-white/[0.06] text-muted cursor-not-allowed shadow-lg"
-          aria-label="AI Chat coming soon"
+          title="AI chat — coming soon"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-surface border border-border text-muted2 cursor-not-allowed"
+          aria-label="AI chat coming soon"
         >
-          <MessageCircle size={20} className="opacity-40" />
+          <MessageCircle size={16} className="opacity-50" />
         </button>
-        <div className="absolute bottom-full right-0 mb-2 px-2.5 py-1 bg-surface2 border border-white/[0.06] text-xs font-mono text-muted whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
-          AI Chat — Coming Soon
+        <div className="absolute bottom-full right-0 mb-2 px-2.5 py-1 rounded-sm bg-surface2 border border-border font-mono text-[11px] text-muted2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none">
+          AI chat — coming soon
         </div>
       </div>
     )
@@ -27,29 +30,26 @@ export default function ChatWidget() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-      {/* Chat panel */}
-      <div
-        style={{
-          opacity: open ? 1 : 0,
-          transform: open ? 'translateY(0) scale(1)' : 'translateY(12px) scale(0.97)',
-          pointerEvents: open ? 'auto' : 'none',
-          transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
-          transformOrigin: 'bottom right',
-        }}
-      >
-        <ChatPanel onClose={() => setOpen(false)} />
-      </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.98 }}
+            animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: EASE }}
+            style={{ transformOrigin: 'bottom right' }}
+          >
+            <ChatPanel onClose={() => setOpen(false)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Toggle button */}
       <button
         onClick={() => setOpen(v => !v)}
-        className="w-12 h-12 flex items-center justify-center bg-accent text-bg shadow-accent hover:bg-accent/90 transition-all duration-200"
+        className="w-10 h-10 flex items-center justify-center rounded-full bg-surface border border-border2 text-text hover:bg-surface2 transition-colors duration-200"
         aria-label={open ? 'Close chat' : 'Open chat'}
       >
-        {open
-          ? <X size={20} />
-          : <MessageCircle size={20} />
-        }
+        {open ? <X size={16} /> : <MessageCircle size={16} />}
       </button>
     </div>
   )

@@ -1,6 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import emailjs from '@emailjs/browser'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { X, Download, Send, CheckCircle } from 'lucide-react'
+import Button from './ui/Button'
+import { TextInput, TextArea, Field } from './ui/Input'
+import { EASE } from '../motion/tokens'
 
 const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
@@ -8,21 +12,16 @@ const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 export default function ResumeDownloadModal({ open, onClose }) {
   const formRef = useRef(null)
+  const reduce = useReducedMotion()
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
   const [errors, setErrors] = useState({})
-  const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [status, setStatus] = useState('idle')
 
-  // Lock body scroll when open
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  // Reset on close
   useEffect(() => {
     if (!open) {
       setForm({ name: '', email: '', company: '', message: '' })
@@ -56,7 +55,6 @@ export default function ResumeDownloadModal({ open, onClose }) {
     setErrors({})
     setStatus('loading')
 
-    // Build a message that includes company context
     const hiddenMessage = formRef.current.querySelector('textarea[name="message"]')
     const messageBody = `[Resume Download]\nCompany: ${form.company}${form.message.trim() ? `\n\n${form.message}` : ''}`
     if (hiddenMessage) hiddenMessage.value = messageBody
@@ -70,128 +68,136 @@ export default function ResumeDownloadModal({ open, onClose }) {
     }
   }
 
-  if (!open) return null
-
-  const inputClass = field =>
-    `w-full bg-surface2 border font-body text-sm text-text placeholder-muted px-4 py-3 outline-none transition-all duration-150 focus:border-accent/60 ${
-      errors[field] ? 'border-red-500/60' : 'border-white/[0.06]'
-    }`
-
   return (
-    <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6"
-      onClick={e => { if (e.target === e.currentTarget) onClose() }}
-    >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-bg/80 backdrop-blur-sm" />
-
-      {/* Modal */}
-      <div className="relative w-full max-w-md bg-surface border border-white/[0.06] shadow-2xl max-h-[90vh] overflow-y-auto">
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-muted hover:text-text transition-colors duration-150 z-10"
-          aria-label="Close"
+    <AnimatePresence>
+      {open && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6"
+          onClick={e => { if (e.target === e.currentTarget) onClose() }}
         >
-          <X size={18} />
-        </button>
+          <motion.div
+            className="absolute inset-0 bg-bg/85 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          />
 
-        <div className="p-6">
-          {status === 'success' ? (
-            <div className="text-center py-6">
-              <CheckCircle size={32} className="text-green-400 mx-auto mb-4" />
-              <h3 className="font-display font-bold text-text text-lg mb-2">Download started!</h3>
-              <p className="font-body text-muted text-sm mb-6">Thanks for your interest. I'll be in touch.</p>
-              <button
-                onClick={onClose}
-                className="font-body text-xs text-muted hover:text-text underline"
-              >
-                Close
-              </button>
+          <motion.div
+            className="relative w-full max-w-md bg-surface border border-border2 rounded-lg shadow-paper max-h-[90vh] overflow-y-auto"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
+            animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.32, ease: EASE }}
+          >
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 text-muted2 hover:text-text transition-colors z-10"
+              aria-label="Close"
+            >
+              <X size={16} />
+            </button>
+
+            <div className="p-6 md:p-7">
+              {status === 'success' ? (
+                <div className="text-center py-4">
+                  <CheckCircle size={28} className="text-success mx-auto mb-4" />
+                  <h3 className="font-display font-medium text-text text-lg mb-2">Download started</h3>
+                  <p className="text-sm text-muted mb-6">Thanks for your interest — I'll be in touch.</p>
+                  <button
+                    onClick={onClose}
+                    className="text-xs text-muted2 hover:text-text underline underline-offset-4"
+                  >
+                    Close
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="mb-6 pr-6">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Download size={14} className="text-accent" />
+                      <p className="font-mono text-[11px] uppercase tracking-label text-accent">Download resume</p>
+                    </div>
+                    <h3 className="font-display font-medium text-text text-xl tracking-tight mb-1.5">
+                      A quick intro first.
+                    </h3>
+                    <p className="text-sm text-muted leading-relaxed">
+                      Tell me a bit about you and I'll hand over the PDF.
+                    </p>
+                  </div>
+
+                  <form ref={formRef} onSubmit={handleSubmit} className="space-y-4" noValidate>
+                    <Field>
+                      <TextInput
+                        type="text"
+                        name="from_name"
+                        placeholder="Your name"
+                        value={form.name}
+                        onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                        aria-invalid={!!errors.name}
+                      />
+                      {errors.name && <p className="text-xs text-[#F87171] mt-1.5">{errors.name}</p>}
+                    </Field>
+                    <Field>
+                      <TextInput
+                        type="email"
+                        name="reply_to"
+                        placeholder="you@company.com"
+                        value={form.email}
+                        onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                        aria-invalid={!!errors.email}
+                      />
+                      {errors.email && <p className="text-xs text-[#F87171] mt-1.5">{errors.email}</p>}
+                    </Field>
+                    <Field>
+                      <TextInput
+                        type="text"
+                        name="company"
+                        placeholder="Company"
+                        value={form.company}
+                        onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
+                        aria-invalid={!!errors.company}
+                      />
+                      {errors.company && <p className="text-xs text-[#F87171] mt-1.5">{errors.company}</p>}
+                    </Field>
+                    <Field>
+                      <TextArea
+                        name="message"
+                        placeholder="Message (optional)"
+                        rows={3}
+                        value={form.message}
+                        onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                      />
+                    </Field>
+                    {status === 'error' && (
+                      <p className="text-xs text-[#F87171]">Something went wrong. Try again.</p>
+                    )}
+                    <Button
+                      type="submit"
+                      disabled={status === 'loading'}
+                      variant="primary"
+                      size="md"
+                      className="w-full"
+                    >
+                      {status === 'loading' ? (
+                        <>
+                          <span className="w-3.5 h-3.5 border-2 border-bg/30 border-t-bg rounded-full animate-spin" />
+                          Sending…
+                        </>
+                      ) : (
+                        <>
+                          <Send size={14} />
+                          Submit &amp; download
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </>
+              )}
             </div>
-          ) : (
-            <>
-              <div className="mb-6 pr-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <Download size={16} className="text-accent" />
-                  <p className="font-mono text-xs text-accent uppercase tracking-widest">Download Resume</p>
-                </div>
-                <p className="font-body text-sm text-muted leading-relaxed">
-                  Enter your details below to download my resume.
-                </p>
-              </div>
-
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-3" noValidate>
-                <div>
-                  <input
-                    type="text"
-                    name="from_name"
-                    placeholder="Your name"
-                    value={form.name}
-                    onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                    className={inputClass('name')}
-                  />
-                  {errors.name && <p className="font-body text-xs text-red-400 mt-1">{errors.name}</p>}
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    name="reply_to"
-                    placeholder="Email address"
-                    value={form.email}
-                    onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                    className={inputClass('email')}
-                  />
-                  {errors.email && <p className="font-body text-xs text-red-400 mt-1">{errors.email}</p>}
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    name="company"
-                    placeholder="Company"
-                    value={form.company}
-                    onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
-                    className={inputClass('company')}
-                  />
-                  {errors.company && <p className="font-body text-xs text-red-400 mt-1">{errors.company}</p>}
-                </div>
-                <div>
-                  <textarea
-                    name="message"
-                    placeholder="Message (optional)"
-                    rows={3}
-                    value={form.message}
-                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                    className={`${inputClass('message')} resize-none`}
-                  />
-                </div>
-                {status === 'error' && (
-                  <p className="font-body text-xs text-red-400">
-                    Something went wrong. Please try again.
-                  </p>
-                )}
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="w-full flex items-center justify-center gap-2 py-3 bg-accent text-bg font-body font-semibold text-sm transition-all duration-200 hover:bg-accent/90 disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {status === 'loading' ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-bg/30 border-t-bg rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send size={14} />
-                      Submit & Download
-                    </>
-                  )}
-                </button>
-              </form>
-            </>
-          )}
+          </motion.div>
         </div>
-      </div>
-    </div>
+      )}
+    </AnimatePresence>
   )
 }

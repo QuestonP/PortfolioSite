@@ -1,132 +1,101 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Download, ChevronDown } from 'lucide-react'
+import { ArrowRight, Download } from 'lucide-react'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import profile from '../data/profile.json'
 import ResumeDownloadModal from '../components/ResumeDownloadModal'
+import Button from '../components/ui/Button'
+import LetterReveal from '../motion/LetterReveal'
+import Reveal from '../motion/Reveal'
 
 const ROLES = profile.roles.map(r => r.label)
-const ROLE_COLORS = profile.roles.map(r => r.color)
-
-function AnimatedRole({ role, color }) {
-  return (
-    <span
-      key={role}
-      className="inline-block font-mono text-base md:text-lg animate-role-fade tracking-wide"
-      style={{ color }}
-    >
-      {role}
-    </span>
-  )
-}
 
 export default function Home() {
   const [roleIdx, setRoleIdx] = useState(0)
-  const [visible, setVisible] = useState(true)
   const [showModal, setShowModal] = useState(false)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
+    if (reduce) return
     const interval = setInterval(() => {
-      setVisible(false)
-      setTimeout(() => {
-        setRoleIdx(i => (i + 1) % ROLES.length)
-        setVisible(true)
-      }, 250)
+      setRoleIdx(i => (i + 1) % ROLES.length)
     }, 2800)
     return () => clearInterval(interval)
-  }, [])
+  }, [reduce])
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-      {/* Line grid background */}
-      <div className="absolute inset-0 line-grid opacity-60 pointer-events-none" />
+    <section className="relative min-h-[calc(100vh-6rem)] flex flex-col items-center justify-center px-6 overflow-hidden">
+      <div className="absolute inset-0 bg-aurora pointer-events-none" aria-hidden />
+      <div className="absolute inset-0 bg-grid-faint opacity-[0.35] pointer-events-none" aria-hidden />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-bg to-transparent pointer-events-none" aria-hidden />
 
-      {/* Radial gradient vignette */}
-      <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
+      <div className="relative z-10 max-w-5xl mx-auto text-center">
+        <Reveal delay={0.05}>
+          <p className="font-mono text-xs uppercase tracking-label text-muted2 mb-8">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-success mr-2 align-middle" />
+            Available for new engagements
+          </p>
+        </Reveal>
 
-      {/* Accent glow orb — tighter, more focused */}
-      <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(79,143,252,0.06) 0%, transparent 60%)',
-        }}
-      />
-
-      {/* Horizontal accent line */}
-      <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/10 to-transparent pointer-events-none" />
-
-      <div className="relative z-10 text-center max-w-5xl mx-auto">
-        {/* Name */}
-        <h1 className="font-display font-extrabold text-text leading-none mb-6 tracking-tight"
-            style={{ fontSize: 'clamp(2.8rem, 8vw, 5.5rem)' }}>
-          Quest Parker
+        <h1 className="font-display font-semibold text-text leading-[1.02] tracking-[-0.035em] mb-6 text-balance"
+            style={{ fontSize: 'clamp(2.6rem, 9vw, 5.5rem)' }}>
+          <LetterReveal text="Data solutions that move numbers." />
         </h1>
 
-        {/* Animated role */}
-        <div className="h-8 mb-6 flex items-center justify-center">
-          <div
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(8px)',
-              transition: 'opacity 0.25s ease-out, transform 0.25s ease-out',
-            }}
-          >
-            <AnimatedRole role={ROLES[roleIdx]} color={ROLE_COLORS[roleIdx]} />
+        <Reveal delay={0.3}>
+          <div className="flex items-center justify-center gap-3 mb-10 h-7">
+            <span className="font-mono text-xs uppercase tracking-label text-muted3">Practicing as</span>
+            <div className="relative h-7 min-w-[200px] flex items-center justify-start">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={roleIdx}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="font-mono text-sm text-text"
+                >
+                  {ROLES[roleIdx]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
+        </Reveal>
 
-        {/* Bio */}
-        <p className="font-body text-muted text-sm md:text-base max-w-2xl mx-auto mb-10 leading-relaxed">
-          {profile.bio_short}
-        </p>
+        <Reveal delay={0.4}>
+          <p className="font-body text-muted text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed text-balance">
+            {profile.bio_short}
+          </p>
+        </Reveal>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            to="/projects"
-            className="group flex items-center gap-2 px-6 py-3 bg-accent text-bg font-mono font-semibold text-xs tracking-widest uppercase transition-all duration-200 hover:bg-accent/90 hover:shadow-accent"
-          >
-            View Projects
-            <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
-          <button
-            onClick={() => setShowModal(true)}
-            className="flex items-center gap-2 px-6 py-3 border border-white/[0.08] text-text font-mono font-medium text-xs tracking-widest uppercase transition-all duration-200 hover:border-accent/40 hover:text-accent"
-          >
-            <Download size={14} />
-            Download Resume
-          </button>
-        </div>
-
-        {/* Role pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mt-14">
-          {profile.roles.map(role => (
-            <span
-              key={role.id}
-              className="font-mono text-[10px] px-3 py-1 border tracking-wider"
-              style={{
-                color: role.color,
-                borderColor: `${role.color}20`,
-                backgroundColor: `${role.color}06`,
-              }}
-            >
-              {role.label}
-            </span>
-          ))}
-        </div>
+        <Reveal delay={0.5}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Button as={Link} to="/projects" variant="primary" size="lg" className="group">
+              See recent work
+              <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Button>
+            <Button onClick={() => setShowModal(true)} variant="secondary" size="lg">
+              <Download size={15} />
+              Download resume
+            </Button>
+          </div>
+        </Reveal>
       </div>
 
-      {/* Scroll indicator */}
-      <a
-        href="#scroll"
-        onClick={e => {
-          e.preventDefault()
-          window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
-        }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-muted hover:text-accent transition-colors duration-150 animate-bounce"
-        aria-label="Scroll down"
-      >
-        <ChevronDown size={18} />
-      </a>
+      <Reveal delay={0.7} className="relative z-10 mt-24 md:mt-32 w-full max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-border">
+          {[
+            { label: 'Currently', value: 'Celonis · AI Solutions Engineer' },
+            { label: 'Based in',  value: profile.location },
+            { label: 'Focus',     value: 'Applied AI · ML · Data Pipelines' },
+          ].map(stat => (
+            <div key={stat.label} className="bg-bg px-6 py-6 text-left">
+              <p className="font-mono text-[11px] uppercase tracking-label text-muted3 mb-2">{stat.label}</p>
+              <p className="text-sm text-text">{stat.value}</p>
+            </div>
+          ))}
+        </div>
+      </Reveal>
 
       <ResumeDownloadModal open={showModal} onClose={() => setShowModal(false)} />
     </section>

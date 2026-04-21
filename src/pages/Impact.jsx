@@ -1,108 +1,70 @@
-import { useState, useEffect, useRef } from 'react'
-import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useEffect, useRef, useState } from 'react'
+import { useReducedMotion } from 'framer-motion'
+import Container from '../components/ui/Container'
+import Badge from '../components/ui/Badge'
+import Reveal from '../motion/Reveal'
 
-function RevealWrapper({ children, delay = 0 }) {
-  const [ref, visible] = useScrollReveal(0.1)
-  return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(24px)',
-        transition: `opacity 0.5s ease-out ${delay}ms, transform 0.5s ease-out ${delay}ms`,
-      }}
-    >
-      {children}
-    </div>
-  )
-}
-
-function SectionLabel({ children }) {
-  return (
-    <div className="flex items-center gap-3 mb-8">
-      <span className="font-mono text-xs text-accent uppercase tracking-widest">{children}</span>
-      <div className="flex-1 border-t border-white/[0.04]" />
-    </div>
-  )
-}
-
-function AnimatedCounter({ value, prefix = '', suffix = '', duration = 2000 }) {
+function AnimatedCounter({ value, prefix = '', suffix = '', duration = 1400 }) {
   const [count, setCount] = useState(0)
   const [started, setStarted] = useState(false)
   const ref = useRef(null)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true)
-        }
-      },
-      { threshold: 0.3 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [started])
+    if (reduce) { setCount(value); return }
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !started) setStarted(true)
+    }, { threshold: 0.3 })
+    if (ref.current) io.observe(ref.current)
+    return () => io.disconnect()
+  }, [started, reduce, value])
 
   useEffect(() => {
-    if (!started) return
-    let start = 0
-    const end = value
-    const stepTime = Math.max(Math.floor(duration / end), 10)
-    const increment = Math.max(Math.floor(end / (duration / stepTime)), 1)
-
-    const timer = setInterval(() => {
-      start += increment
-      if (start >= end) {
-        setCount(end)
-        clearInterval(timer)
-      } else {
-        setCount(start)
-      }
-    }, stepTime)
-
-    return () => clearInterval(timer)
-  }, [started, value, duration])
+    if (!started || reduce) return
+    const start = performance.now()
+    let raf
+    const step = (t) => {
+      const p = Math.min((t - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setCount(Math.round(value * eased))
+      if (p < 1) raf = requestAnimationFrame(step)
+    }
+    raf = requestAnimationFrame(step)
+    return () => raf && cancelAnimationFrame(raf)
+  }, [started, value, duration, reduce])
 
   return (
-    <span ref={ref} className="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl text-text tabular-nums">
+    <span ref={ref} className="font-display font-medium text-text tabular-nums">
       {prefix}{count.toLocaleString()}{suffix}
     </span>
   )
 }
 
-function ProgressBar({ label, value, maxValue, displayValue, color = '#4f8ffc', delay = 0 }) {
+function ProgressBar({ label, value, displayValue, delay = 0 }) {
   const [visible, setVisible] = useState(false)
   const ref = useRef(null)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true)
-      },
-      { threshold: 0.2 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) setVisible(true)
+    }, { threshold: 0.2 })
+    if (ref.current) io.observe(ref.current)
+    return () => io.disconnect()
   }, [])
-
-  const pct = Math.min((value / maxValue) * 100, 100)
 
   return (
     <div ref={ref} className="space-y-2">
       <div className="flex items-baseline justify-between gap-2">
-        <span className="font-body text-sm text-muted">{label}</span>
-        <span className="font-mono text-sm font-bold" style={{ color }}>
-          {displayValue}
-        </span>
+        <span className="text-sm text-muted">{label}</span>
+        <span className="font-mono text-sm text-text tabular-nums">{displayValue}</span>
       </div>
-      <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+      <div className="h-px bg-border relative overflow-hidden">
         <div
-          className="h-full rounded-full"
+          className="absolute inset-y-0 left-0 bg-accent"
           style={{
-            width: visible ? `${pct}%` : '0%',
-            backgroundColor: color,
-            transition: `width 1.2s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
+            width: visible ? `${value}%` : '0%',
+            transition: reduce ? 'none' : `width 1.1s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
           }}
         />
       </div>
@@ -111,302 +73,228 @@ function ProgressBar({ label, value, maxValue, displayValue, color = '#4f8ffc', 
 }
 
 const HEADLINE_KPIS = [
-  { value: 110, prefix: '$', suffix: 'M+', label: 'Total Value Realized', color: '#34d399' },
-  { value: 10, prefix: '$', suffix: 'M+', label: 'Revenue Directly Influenced', color: '#4f8ffc' },
-  { value: 2, prefix: '', suffix: 'M+', label: 'Data Points Analyzed', color: '#a78bfa' },
-  { value: 80, prefix: '', suffix: '%', label: 'Max Efficiency Gain', color: '#fb923c' },
+  { value: 110, prefix: '$', suffix: 'M+', label: 'Total value realized' },
+  { value: 10,  prefix: '$', suffix: 'M+', label: 'Revenue influenced' },
+  { value: 2,   prefix: '',  suffix: 'M+', label: 'Data points analyzed' },
+  { value: 80,  prefix: '',  suffix: '%',  label: 'Max efficiency gain' },
 ]
 
 const DEALS = [
-  { amount: 4000, label: '$4M', description: 'Agentic AI PoC \u2192 Contract Expansion', note: 'Top-3 deal in company history', color: '#4f8ffc' },
-  { amount: 3500, label: '$3.5M', description: 'Enterprise Pharma Annual Renewal', note: '$100M+ realized value', color: '#34d399' },
-  { amount: 1500, label: '$1.5M', description: 'AI-Led Tax Matching Commercial Deal', note: 'Moved to production', color: '#a78bfa' },
-  { amount: 800, label: '$800K', description: 'Churn-Risk Account Saved', note: '24-week value sprint', color: '#fb923c' },
-  { amount: 140, label: '$140K', description: 'AI Agent License Expansion', note: 'Up to $1B blocked revenue unlocked', color: '#f472b6' },
+  { amount: 4000, label: '$4M',  description: 'Agentic AI PoC → contract expansion', note: 'Top-3 deal in company history' },
+  { amount: 3500, label: '$3.5M',description: 'Enterprise pharma annual renewal',    note: '$100M+ realized value'          },
+  { amount: 1500, label: '$1.5M',description: 'AI-led tax matching deal',             note: 'Moved to production'            },
+  { amount: 800,  label: '$800K',description: 'Churn-risk account saved',             note: '24-week value sprint'           },
+  { amount: 140,  label: '$140K',description: 'AI agent license expansion',           note: 'Up to $1B blocked revenue unlocked' },
 ]
 
 const VALUE_CARDS = [
-  { value: '$100M+', label: 'Realized Value', description: 'Enterprise-grade process intelligence for global retail pharmaceutical client', color: '#34d399' },
-  { value: '$60M', label: 'Free Cash Flow', description: 'Opportunity surfaced through advanced analytics and process mining', color: '#4f8ffc' },
-  { value: '$1B', label: 'Blocked Revenue', description: 'Unlocked for tobacco manufacturer via AI-powered allocation review', color: '#a78bfa' },
-  { value: '$5M', label: 'P&L Impact', description: 'Delivered through process intelligence and workflow automation', color: '#fb923c' },
+  { value: '$100M+', label: 'Realized value',  description: 'Enterprise process intelligence for a global retail pharma client' },
+  { value: '$60M',   label: 'Free cash flow',  description: 'Opportunity surfaced through analytics and process mining' },
+  { value: '$1B',    label: 'Blocked revenue', description: 'Unlocked via AI-powered allocation review at a tobacco manufacturer' },
+  { value: '$5M',    label: 'P&L impact',      description: 'Delivered through process intelligence and workflow automation' },
 ]
 
-const EFFICIENCY_METRICS = [
-  { label: 'Manual review time reduction (MSA analysis)', value: 80, maxValue: 100, displayValue: '80%', color: '#4f8ffc' },
-  { label: 'Deployment time reduction (CI/CD)', value: 60, maxValue: 100, displayValue: '60%', color: '#34d399' },
-  { label: 'Onboarding acceleration', value: 50, maxValue: 100, displayValue: '50%', color: '#a78bfa' },
-  { label: 'Web traffic increase', value: 20, maxValue: 100, displayValue: '20%', color: '#f472b6' },
+const EFFICIENCY = [
+  { label: 'Manual review time reduction (MSA analysis)', value: 80, displayValue: '80%' },
+  { label: 'Deployment time reduction (CI/CD)',           value: 60, displayValue: '60%' },
+  { label: 'Onboarding acceleration',                     value: 50, displayValue: '50%' },
+  { label: 'Web traffic increase',                        value: 20, displayValue: '20%' },
 ]
 
-const SCALE_METRICS = [
-  { value: '2M+', label: 'Purchase orders analyzed', description: 'Semantic clustering with S-BERT & ChromaDB' },
-  { value: '1,000+', label: 'Documents auto-processed', description: 'LLM-powered MSA extraction pipeline' },
-  { value: '50K+', label: 'End users served', description: 'High-speed rail mobile application' },
-  { value: '300%', label: 'Team visibility increase', description: 'Automated notification system' },
+const SCALE = [
+  { value: '2M+',    label: 'Purchase orders analyzed',    description: 'S-BERT & ChromaDB semantic clustering' },
+  { value: '1,000+', label: 'Documents auto-processed',    description: 'LLM-powered MSA extraction pipeline' },
+  { value: '50K+',   label: 'End users served',            description: 'High-speed rail mobile application' },
+  { value: '300%',   label: 'Team visibility increase',    description: 'Automated notification system' },
 ]
 
 const INDUSTRIES = [
-  { icon: '\u{1F48A}', name: 'Pharmaceutical', detail: 'Global top-10 pharma company', color: '#34d399' },
-  { icon: '\u{1F697}', name: 'Automotive', detail: 'Fortune 500 manufacturer', color: '#4f8ffc' },
-  { icon: '\u{1F6E2}', name: 'Tobacco', detail: "World's largest manufacturer", color: '#a78bfa' },
-  { icon: '\u{1F684}', name: 'Rail', detail: 'First US high-speed rail', color: '#fb923c' },
-  { icon: '\u{1F6D2}', name: 'Retail / E-commerce', detail: 'Marketplace analytics & supply chain', color: '#f472b6' },
-  { icon: '\u{2696}', name: 'Legal / Compliance', detail: 'MSA analysis & document automation', color: '#38bdf8' },
+  { name: 'Pharmaceutical', detail: 'Global top-10 pharma' },
+  { name: 'Automotive',     detail: 'Fortune 500 manufacturer' },
+  { name: 'Tobacco',        detail: 'World-largest manufacturer' },
+  { name: 'Rail',           detail: 'First US high-speed rail' },
+  { name: 'Retail',         detail: 'Marketplace analytics' },
+  { name: 'Legal',          detail: 'MSA analysis automation' },
 ]
 
-const IMPACT_STORIES = [
+const STORIES = [
   {
-    title: 'From PoC to Top-3 Deal',
-    text: 'Architected an end-to-end agentic AI solution for dispute classification and automated resolution at a global top-10 pharmaceutical company. What started as a 3-month proof of concept became the foundation for a $4M contract expansion \u2014 ranked among the top 3 deals in company history.',
+    title: 'From PoC to Top-3 deal',
+    text: 'Architected an end-to-end agentic AI solution for dispute classification and automated resolution at a global top-10 pharmaceutical company. A 3-month PoC became the foundation for a $4M contract expansion.',
     tags: ['Agentic AI', 'Process Orchestration', 'Enterprise Deal'],
-    color: '#4f8ffc',
   },
   {
-    title: 'Saving an $800K Account',
-    text: 'When an $800K ARR account was on the verge of churn, I led a 24-week value sprint applying process intelligence, Make automations, and advanced analytics. The result: $60M in free cash flow opportunity surfaced, $5M in P&L impact identified, and a clear path to enterprise-scale deployment that transformed the engagement from reactive to strategic.',
-    tags: ['Customer Retention', 'Value Sprint', 'Process Intelligence'],
-    color: '#34d399',
+    title: 'Saving an $800K account',
+    text: '24-week value sprint applying process intelligence, Make automations, and advanced analytics. $60M in FCF surfaced, $5M P&L impact identified, and a clear path to enterprise-scale deployment.',
+    tags: ['Retention', 'Value Sprint', 'Process Intelligence'],
   },
   {
-    title: 'Unlocking $1B in Blocked Revenue',
-    text: 'Built an AI agent for one of the world\'s largest tobacco manufacturers that automatically reviewed and released allocation blocks. Delivered the proof of concept onsite to 10+ senior stakeholders, securing a $140K license expansion and unlocking up to $1B in previously blocked revenue.',
-    tags: ['AI Agent', 'Onsite Delivery', 'Stakeholder Alignment'],
-    color: '#a78bfa',
+    title: 'Unlocking $1B in revenue',
+    text: 'AI agent for a large tobacco manufacturer that automatically reviewed and released allocation blocks. Delivered onsite to 10+ senior stakeholders. $140K license expansion; up to $1B unlocked.',
+    tags: ['AI Agent', 'Onsite Delivery', 'Stakeholders'],
   },
 ]
+
+function DealBar({ deal, pct, delay }) {
+  const [visible, setVisible] = useState(false)
+  const ref = useRef(null)
+  const reduce = useReducedMotion()
+
+  useEffect(() => {
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) setVisible(true)
+    }, { threshold: 0.2 })
+    if (ref.current) io.observe(ref.current)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <div ref={ref} className="py-5 grid grid-cols-[80px_1fr] md:grid-cols-[120px_1fr_auto] gap-5 items-center border-t border-border">
+      <span className="font-display text-xl md:text-2xl font-medium text-text tabular-nums">{deal.label}</span>
+      <div className="min-w-0">
+        <div className="h-px bg-border relative overflow-hidden mb-2">
+          <div
+            className="absolute inset-y-0 left-0 bg-accent"
+            style={{
+              width: visible ? `${pct}%` : '0%',
+              transition: reduce ? 'none' : `width 1s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
+            }}
+          />
+        </div>
+        <p className="text-sm text-text">{deal.description}</p>
+      </div>
+      <p className="font-mono text-[11px] uppercase tracking-label text-muted3 hidden md:block">{deal.note}</p>
+    </div>
+  )
+}
 
 export default function Impact() {
   const maxDeal = Math.max(...DEALS.map(d => d.amount))
 
   return (
-    <div className="pt-24 pb-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="relative">
+      <div className="absolute inset-0 bg-topo opacity-100 pointer-events-none" aria-hidden />
 
-        {/* Hero */}
-        <div className="mb-16">
-          <RevealWrapper>
-            <p className="font-mono text-xs text-accent uppercase tracking-widest mb-3">Career Impact</p>
-            <h1 className="font-display font-bold text-4xl md:text-5xl text-text mb-6">
-              Measurable outcomes,<br className="hidden md:block" />
-              <span className="gradient-text"> real business value.</span>
-            </h1>
-            <p className="font-body text-muted text-base md:text-lg max-w-2xl leading-relaxed">
-              From multi-million dollar deal wins to production-grade AI systems processing millions of records — every project anchored to quantifiable impact across enterprise clients worldwide.
-            </p>
-          </RevealWrapper>
-        </div>
+      <Container className="relative pt-12 md:pt-16 pb-24">
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-label text-muted2 mb-5">Impact</p>
+          <h1 className="font-display font-semibold text-text tracking-[-0.03em] text-balance mb-6"
+              style={{ fontSize: 'clamp(2.2rem, 5.5vw, 3.5rem)' }}>
+            Measurable outcomes, quantifiable value.
+          </h1>
+          <p className="text-muted text-lg max-w-2xl leading-relaxed text-balance mb-14">
+            Multi-million dollar deal wins, production AI systems processing millions of records, and enterprise delivery across pharma, automotive, rail, and retail — every project anchored to real numbers.
+          </p>
+        </Reveal>
 
-        {/* Headline KPIs */}
-        <RevealWrapper>
-          <SectionLabel>At a Glance</SectionLabel>
-        </RevealWrapper>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {HEADLINE_KPIS.map((kpi, i) => (
-            <RevealWrapper key={kpi.label} delay={i * 80}>
-              <div className="border border-white/[0.04] bg-surface p-4 sm:p-6 glow-border text-center">
-                <AnimatedCounter
-                  value={kpi.value}
-                  prefix={kpi.prefix}
-                  suffix={kpi.suffix}
-                  duration={1800 + i * 200}
-                />
-                <p className="font-mono text-xs text-muted uppercase tracking-wider mt-3">{kpi.label}</p>
-                <div className="w-8 h-0.5 mx-auto mt-3 rounded-full" style={{ backgroundColor: kpi.color }} />
+        {/* Bento KPI grid */}
+        <Reveal delay={0.1}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-md overflow-hidden mb-20">
+            {HEADLINE_KPIS.map(kpi => (
+              <div key={kpi.label} className="bg-surface p-6 md:p-8">
+                <div className="text-[44px] md:text-[52px] leading-none tracking-[-0.025em]">
+                  <AnimatedCounter value={kpi.value} prefix={kpi.prefix} suffix={kpi.suffix} />
+                </div>
+                <p className="font-mono text-[11px] uppercase tracking-label text-muted3 mt-4">
+                  {kpi.label}
+                </p>
               </div>
-            </RevealWrapper>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
 
         {/* Deal Impact */}
-        <div className="mb-16">
-          <RevealWrapper>
-            <SectionLabel>Deal Impact</SectionLabel>
-          </RevealWrapper>
-          <div className="space-y-4">
-            {DEALS.map((deal, i) => {
-              const pct = (deal.amount / maxDeal) * 100
-              return (
-                <RevealWrapper key={deal.label} delay={i * 60}>
-                  <DealBar deal={deal} pct={pct} delay={i * 100} />
-                </RevealWrapper>
-              )
-            })}
+        <section className="mb-20">
+          <Reveal>
+            <p className="font-mono text-xs uppercase tracking-label text-muted3 mb-5">Deal impact</p>
+          </Reveal>
+          <div>
+            {DEALS.map((deal, i) => (
+              <DealBar key={deal.label} deal={deal} pct={(deal.amount / maxDeal) * 100} delay={i * 100} />
+            ))}
+            <div className="border-b border-border" />
           </div>
-        </div>
+        </section>
 
         {/* Value Unlocked */}
-        <div className="mb-16">
-          <RevealWrapper>
-            <SectionLabel>Value Unlocked for Clients</SectionLabel>
-          </RevealWrapper>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {VALUE_CARDS.map((card, i) => (
-              <RevealWrapper key={card.label} delay={i * 80}>
-                <div
-                  className="border bg-surface p-6 glow-border card-corners h-full flex flex-col"
-                  style={{ borderColor: `${card.color}20` }}
-                >
-                  <span
-                    className="font-display font-extrabold text-3xl mb-2"
-                    style={{ color: card.color }}
-                  >
-                    {card.value}
-                  </span>
-                  <span className="font-mono text-xs text-muted uppercase tracking-wider mb-3">
-                    {card.label}
-                  </span>
-                  <p className="font-body text-sm text-muted leading-relaxed mt-auto">
-                    {card.description}
+        <section className="mb-20">
+          <Reveal>
+            <p className="font-mono text-xs uppercase tracking-label text-muted3 mb-5">Value unlocked for clients</p>
+          </Reveal>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-md overflow-hidden">
+            {VALUE_CARDS.map(c => (
+              <div key={c.label} className="bg-surface p-6">
+                <p className="font-display text-3xl font-medium text-text tabular-nums tracking-[-0.02em] mb-2">
+                  {c.value}
+                </p>
+                <p className="font-mono text-[11px] uppercase tracking-label text-muted3 mb-3">{c.label}</p>
+                <p className="text-sm text-muted leading-relaxed">{c.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Efficiency + Scale split */}
+        <section className="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-px bg-border border border-border rounded-md overflow-hidden">
+          <div className="bg-surface p-7">
+            <p className="font-mono text-xs uppercase tracking-label text-muted3 mb-6">Efficiency gains</p>
+            <div className="space-y-5">
+              {EFFICIENCY.map((m, i) => (
+                <ProgressBar key={m.label} {...m} delay={i * 120} />
+              ))}
+            </div>
+          </div>
+          <div className="bg-surface p-7">
+            <p className="font-mono text-xs uppercase tracking-label text-muted3 mb-6">Scale of operations</p>
+            <div className="grid grid-cols-2 gap-5">
+              {SCALE.map(m => (
+                <div key={m.label}>
+                  <p className="font-display text-2xl font-medium text-text tabular-nums tracking-tight mb-1">
+                    {m.value}
                   </p>
+                  <p className="font-mono text-[11px] uppercase tracking-label text-muted3 mb-1">{m.label}</p>
+                  <p className="text-xs text-muted leading-relaxed">{m.description}</p>
                 </div>
-              </RevealWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Industries */}
+        <section className="mb-20">
+          <Reveal>
+            <p className="font-mono text-xs uppercase tracking-label text-muted3 mb-5">Industry reach</p>
+          </Reveal>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-border border border-border rounded-md overflow-hidden">
+            {INDUSTRIES.map(i => (
+              <div key={i.name} className="bg-surface p-5">
+                <p className="font-display text-sm font-medium text-text tracking-tight mb-1">{i.name}</p>
+                <p className="text-xs text-muted leading-snug">{i.detail}</p>
+              </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Efficiency & Scale */}
-        <div className="mb-16">
-          <RevealWrapper>
-            <SectionLabel>Efficiency Gains</SectionLabel>
-          </RevealWrapper>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <RevealWrapper>
-              <div className="border border-white/[0.04] bg-surface p-6 glow-border space-y-5">
-                <p className="font-mono text-xs text-accent uppercase tracking-wider mb-2">Percentage Improvements</p>
-                {EFFICIENCY_METRICS.map((m, i) => (
-                  <ProgressBar key={m.label} {...m} delay={i * 150} />
-                ))}
-              </div>
-            </RevealWrapper>
-
-            <RevealWrapper delay={100}>
-              <div className="border border-white/[0.04] bg-surface p-6 glow-border">
-                <p className="font-mono text-xs text-accent uppercase tracking-wider mb-5">Scale of Operations</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {SCALE_METRICS.map(m => (
-                    <div key={m.label} className="border border-white/[0.03] bg-surface2 p-4">
-                      <span className="font-display font-extrabold text-2xl text-text">{m.value}</span>
-                      <p className="font-mono text-xs text-accent mt-1">{m.label}</p>
-                      <p className="font-body text-xs text-muted mt-1 leading-relaxed">{m.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </RevealWrapper>
-          </div>
-        </div>
-
-        {/* Industry Reach */}
-        <div className="mb-16">
-          <RevealWrapper>
-            <SectionLabel>Industry Reach</SectionLabel>
-          </RevealWrapper>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {INDUSTRIES.map((ind, i) => (
-              <RevealWrapper key={ind.name} delay={i * 60}>
-                <div
-                  className="border bg-surface p-3 sm:p-4 glow-border text-center h-full flex flex-col items-center justify-center"
-                  style={{ borderColor: `${ind.color}15` }}
-                >
-                  <span className="text-2xl mb-2">{ind.icon}</span>
-                  <span className="font-mono text-xs font-bold" style={{ color: ind.color }}>
-                    {ind.name}
-                  </span>
-                  <p className="font-body text-xs text-muted mt-1 leading-tight">{ind.detail}</p>
-                </div>
-              </RevealWrapper>
-            ))}
-          </div>
-        </div>
-
-        {/* Impact Stories */}
-        <div>
-          <RevealWrapper>
-            <SectionLabel>Impact Stories</SectionLabel>
-          </RevealWrapper>
+        {/* Stories as horizontal scroll */}
+        <section>
+          <Reveal>
+            <p className="font-mono text-xs uppercase tracking-label text-muted3 mb-5">Impact stories</p>
+          </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {IMPACT_STORIES.map((story, i) => (
-              <RevealWrapper key={story.title} delay={i * 100}>
-                <div
-                  className="border bg-surface p-6 glow-border card-corners h-full flex flex-col"
-                  style={{ borderColor: `${story.color}20` }}
-                >
-                  <div
-                    className="w-8 h-0.5 rounded-full mb-4"
-                    style={{ backgroundColor: story.color }}
-                  />
-                  <h3
-                    className="font-display font-bold text-base mb-3"
-                    style={{ color: story.color }}
-                  >
-                    {story.title}
-                  </h3>
-                  <p className="font-body text-sm text-muted leading-relaxed flex-1 mb-5">
-                    {story.text}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mt-auto">
-                    {story.tags.map(tag => (
-                      <span
-                        key={tag}
-                        className="font-mono text-xs px-2 py-0.5 border border-white/[0.04] text-muted"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+            {STORIES.map((s, i) => (
+              <Reveal key={s.title} delay={i * 0.08}>
+                <article className="bg-surface border border-border rounded-md p-6 h-full flex flex-col">
+                  <h3 className="font-display text-lg font-medium text-text tracking-tight mb-3">{s.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed flex-1 mb-5">{s.text}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {s.tags.map(t => <Badge key={t}>{t}</Badge>)}
                   </div>
-                </div>
-              </RevealWrapper>
+                </article>
+              </Reveal>
             ))}
           </div>
-        </div>
-
-      </div>
-    </div>
-  )
-}
-
-function DealBar({ deal, pct, delay }) {
-  const [visible, setVisible] = useState(false)
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true)
-      },
-      { threshold: 0.2 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <div ref={ref} className="border border-white/[0.03] bg-surface p-4 glow-border">
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-        <span
-          className="font-display font-extrabold text-xl sm:w-20 flex-shrink-0"
-          style={{ color: deal.color }}
-        >
-          {deal.label}
-        </span>
-        <div className="flex-1">
-          <div className="h-3 bg-white/5 rounded-full overflow-hidden mb-2">
-            <div
-              className="h-full rounded-full"
-              style={{
-                width: visible ? `${pct}%` : '0%',
-                backgroundColor: deal.color,
-                transition: `width 1s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
-              }}
-            />
-          </div>
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-            <span className="font-body text-sm text-text">{deal.description}</span>
-            <span className="font-mono text-xs text-muted">{deal.note}</span>
-          </div>
-        </div>
-      </div>
+        </section>
+      </Container>
     </div>
   )
 }
